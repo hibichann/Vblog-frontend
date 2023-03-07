@@ -1,0 +1,92 @@
+/* element plus UI重置 */
+
+.el-menu {
+  overflow: hidden;
+  width: 100%;
+  border-right: unset;
+  font-size: 16px !important;
+  background-color: transparent !important;
+}
+
+.el-menu-item {
+  text-align: left !important;
+  height: 50px !important;
+  font-weight: bold !important;
+  font-size: 16px;
+  position: relative;
+  left: 0px;
+  transition: all 0.5s;
+  color: #f1c42d;
+  border: none !important;
+}
+
+.el-menu-item:hover {
+  font-weight: bold !important;
+  transition: all 0.5s;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.is-active {
+  transition: all 0.5s;
+}
+
+.el-menu-item::before {
+  display: inline-block !important;
+  position: relative;
+  left: -10px;
+  content: '';
+  background-color: transparent !important;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 3px solid #f1c42d;
+  transition: all 0.5s;
+}
+
+.el-menu-item.is-active::before {
+  background-color: transparent !important;
+  display: inline-block !important;
+  position: relative;
+  left: -10px;
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 3px solid red;
+  transition: all 0.5s;
+}
+
+.el-menu-item:hover::before {
+  background-color: transparent !important;
+  display: inline-block !important;
+  position: relative;
+  left: -10px;
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 3px solid red;
+  transition: all 0.5s;
+}
+
+.el-sub-menu__icon-arrow {
+  display: none;
+}
+
+.el-sub-menu {
+  position: relative;
+  left: 20px !important;
+  right: 0 !important;
+}
+
+.el-sub-menu__title {
+  padding: 0 20px !important;
+  font-size: 18px !important;
+  background-color: transparent !important;
+  color: #ff5100;
+  font-weight: 700;
+}
+
+.el-message {
+  z-index: 999;
+}

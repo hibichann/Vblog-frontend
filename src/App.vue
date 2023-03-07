@@ -1,30 +1,33 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <layout-body-vue>
+      <router-view :key="routerKey" />
+    </layout-body-vue>
+  </div>
 </template>
-
+<script lang="ts" setup>
+import { getBlogByPage } from './request/api'
+import layoutBodyVue from './views/layout/layout-body.vue'
+import { useRoute } from 'vue-router'
+import { computed, onMounted } from 'vue'
+import store from '@/store'
+getBlogByPage({ page: 1 })
+const isMobile = () => {
+  let flag = navigator.userAgent.match(/(phone|pod|iPhone|iPod|ios|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+  return flag
+}
+onMounted(() => {
+  store.commit('isMobile', isMobile())
+})
+const route = useRoute()
+const routerKey = computed(() => {
+  //TODO query参数改变时刷新页面
+  return route.path + Math.random()
+})
+</script>
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  font-family: 'HarmonyOS' !important;
+  font-weight: 500 !important;
 }
 </style>

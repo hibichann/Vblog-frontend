@@ -1,0 +1,18 @@
+/* 滚动条样式 */
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #ff8c8c !important;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-track {
+  /* 阴影 */
+  /* -webkit-box-shadow: inset 0 0 6px rgba(255, 43, 43, 0.3); */
+  background-color: #ffffff !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0px !important;
+  background-color: rgb(184, 1, 1) !important;
+}
