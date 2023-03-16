@@ -12,15 +12,37 @@
             {{ '&nbsp;&nbsp;&nbsp;' + title }}
           </div>
           <CardMDVue
-            :id="1"
-            v-for="i in 10"
+            v-for="i in list.content"
+            :article="i"
             :key="i"
           ></CardMDVue>
-          <div
-            :style="{ color: 'white', display: 'flex', 'justify-content': 'space-around' }"
-            v-if="props.type === 'home'"
-          >
-            {{ $t('meg.seemore') }}
+          <div class="text-center">
+            <div
+              class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer hover:text-lg hover:leading-6"
+              v-if="props.type === 'home'"
+            >
+              {{ $t('meg.seemore') }}
+            </div>
+            <div
+              v-else
+              class="flex flex-1 justify-between"
+            >
+              <div
+                v-show="page !== 1"
+                @click="handleClick('up')"
+                class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
+              >
+                上一页
+              </div>
+              <div v-show="page === 1"></div>
+              <div
+                v-show="list.total - page * 10 > 0"
+                @click="handleClick('down')"
+                class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
+              >
+                下一页
+              </div>
+            </div>
           </div>
         </div>
       </el-col>
@@ -40,21 +62,18 @@ import PlainCardVue from '@/components/PlainCard.vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import CardMDVue from './CardMD.vue'
 import store from '@/store'
+import '@/request/api/types'
+import { getBlogByPage, getBlogByTag } from '@/request/api'
 const props = defineProps({
   type: {
     type: String,
     default: 'home',
     required: false
   },
-  page: {
+  id: {
     type: Number,
     default: 1,
-    required: false
-  },
-  cateId: {
-    type: Number,
-    default: 100,
-    required: false
+    required: true
   },
   title: {
     type: String,
@@ -81,12 +100,37 @@ const checkWidth = () => {
     spanWidth.value[4] = 2
   }
 }
-onMounted(() => {
+const page = ref(1)
+const list = ref<any>({ content: {} })
+const handleList = async (page) => {
   if (props.type === 'cate') {
-    title.value = props.title
+    list.value = await getBlogByPage({ page, classid: props.id })
+  } else if (props.type === 'tag') {
+    list.value = await getBlogByTag({ page, tagid: props.id })
+  } else {
+    list.value = await getBlogByPage({ page: 1 })
   }
+}
+const handleClick = (text) => {
+  if (text === 'down') {
+    page.value += 1
+    handleList(page.value)
+  } else if (text === 'up') {
+    page.value -= 1
+    handleList(page.value)
+  }
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+onMounted(async () => {
+  console.log(123, props)
+
+  title.value = props.title
   checkWidth()
   window.addEventListener('resize', checkWidth)
+  list.value = await handleList(page.value)
 })
 onBeforeUnmount(() => {
   window.removeEventListener('resize', checkWidth)

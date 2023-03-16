@@ -39,7 +39,7 @@ const props = defineProps({
 
 const router = useRouter()
 const clickTitle = (menuId: number, menuName: string) => {
-  router.push({ name: 'classifyDetail', query: { menuId: menuId, menuName: menuName } })
+  router.push({ name: 'classifyDetail', query: { id: menuId, menuName: menuName, type: 'cate' } })
 }
 const menu = ref(props.menu)
 </script>

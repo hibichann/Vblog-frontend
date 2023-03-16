@@ -9,6 +9,8 @@ export default {
     album: '相册',
     finNew: '最新文章',
     CateDetail: '分类详情',
-    seemore: '查看更多'
+    ArtDetail: '文章 Detail',
+    seemore: '查看更多',
+    archive: '归档'
   }
 }

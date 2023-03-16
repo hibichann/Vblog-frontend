@@ -9,6 +9,8 @@ export default {
     album: 'Album',
     finNew: 'Latest Articles',
     CateDetail: 'Category Detail',
-    seemore: 'See More'
+    ArtDetail: 'Article Detail',
+    seemore: 'See More',
+    archive: 'Archive'
   }
 }

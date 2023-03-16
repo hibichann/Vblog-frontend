@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <HelloWorld :type="'home'" />
+    <HelloWorld type="home" />
   </div>
 </template>
 

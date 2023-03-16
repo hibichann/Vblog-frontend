@@ -2,6 +2,7 @@
   <div class="card-body">
     <!-- 文章卡片 -->
     <div
+      v-if="!store.state.isMobile"
       class="left-body"
       @click="toArticleDetail"
     >
@@ -13,7 +14,7 @@
           class="title"
           @click="toArticleDetail"
         >
-          {{ article.title }}
+          {{ article?.title }}
         </div>
         <div class="about">
           <div>
@@ -21,19 +22,13 @@
               class="fa fa-calendar"
               aria-hidden="true"
             ></i
-            >&nbsp;发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD') }}
+            >&nbsp;发表于：{{ dayjs(article?.createdate).format('YYYY-MM-DD') }}
           </div>
-          <div>
-            <i
-              class="fa fa-puzzle-piece"
-              aria-hidden="true"
-            ></i
-            >&nbsp;|&nbsp;{{ article.cnname }}
-          </div>
+          <div><i class="fa fa-puzzle-piece"></i>&nbsp;|&nbsp;{{ article?.cnname }}</div>
         </div>
         <div
           class="detail"
-          v-html="marked(article.content.toString())"
+          v-html="marked(article?.content.toString())"
         ></div>
       </div>
     </div>
@@ -42,31 +37,22 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { getArticle } from '@/request/api'
 import { marked } from 'marked'
 import router from '@/router'
+import store from '@/store'
 var dayjs = require('dayjs')
 const props = defineProps({
-  id: {
-    type: Number,
-    default: 0,
-    required: true
+  article: {
+    type: Object
   }
 })
-const article = ref({
-  id: 0,
-  title: '文章不存在',
-  content: 0,
-  date: '2023-02-07T03:20:52.000Z',
-  createdate: '2022-11-14T05:57:47.000Z',
-  status: 1,
-  cnname: ''
-})
+const article = ref(props.article)
 const toArticleDetail = () => {
-  router.push({ name: 'articleDetail', query: { id: article.value.id } })
+  console.log(123, article.value!.id)
+  router.push({ name: 'articleDetail', query: { id: article.value!.id || 1 } })
 }
 onMounted(async () => {
-  article.value = (await getArticle({ id: props.id || 1 })) as any
+  // article?.value = (await getarticle?({ id: props.id || 1 })) as any
 })
 </script>
 <style lang="scss" scoped>
@@ -78,7 +64,7 @@ onMounted(async () => {
   border-radius: 10px;
   overflow: hidden;
   display: flex;
-  // box-shadow: 2px 2px 2px 2px rgba(0, 172, 224, 0.37);
+  justify-content: flex-start;
   .left-body {
     width: 40%;
     display: flex;
@@ -99,7 +85,7 @@ onMounted(async () => {
     }
   }
   .right-body {
-    width: 60%;
+    width: 100%;
     z-index: 99;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -107,10 +93,11 @@ onMounted(async () => {
     .article-body {
       // margin-top: 10px;
       background-color: rgb(255, 255, 255);
-      width: 500px;
+      width: 100%;
       height: 150px;
       .title {
         position: relative;
+        padding: 0 10px;
         display: block;
         text-align: left;
         height: 40px;
@@ -129,6 +116,7 @@ onMounted(async () => {
       }
       .about {
         display: flex;
+        padding: 0 10px;
         div {
           margin-left: 10px;
           font-size: 14px;
@@ -149,9 +137,10 @@ onMounted(async () => {
       .detail {
         position: relative;
         // white-space: pre;
-        width: 80%;
+        width: 100%;
         left: 10px;
         top: 10px;
+        padding: 0 10px;
         font-size: 16px;
         line-height: 20px;
         font-weight: 500;

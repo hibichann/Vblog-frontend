@@ -9,7 +9,7 @@ import 'element-plus/dist/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 import i18n from './language/index.js'
 import hljs from "highlight.js";
-import "highlight.js/styles/a11y-dark.css";
+import "highlight.js/styles/atom-one-light.css";
 import "github-markdown-css/github-markdown-light.css"
 
 import './assets/css/reset.css'
@@ -17,17 +17,6 @@ import './assets/css/scroll.css'
 import './assets/css/font.css'
 import './assets/css/el.css'
 import './index.css'
-// /* import the fontawesome core */
-// import { library } from '@fortawesome/fontawesome-svg-core'
-
-// /* import font awesome icon component */
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-// /* import specific icons */
-// import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-
-/* add icons to the library */
-// library.add(faUserSecret)
 createApp(App)
 .use(store)
 .use(router)

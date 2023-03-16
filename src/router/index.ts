@@ -22,6 +22,14 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/archive',
+    name: 'archive',
+    component: () => import('../views/Archive.vue'),
+    meta: {
+      title: i18n.global.t('meg.archive')
+    }
+  },
+  {
     path: '/classify/detail',
     name: 'classifyDetail',
     component: () => import('../views/ClassifyDetail.vue'),
@@ -34,15 +42,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'articleDetail',
     component: () => import('../views/ArticleDetail.vue'),
     meta: {
-      title: i18n.global.t('meg.CateDetail')
-    }
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: () => import('../views/testTest.vue'),
-    meta: {
-      title: i18n.global.t('meg.test')
+      title: i18n.global.t('meg.ArtDetail')
     }
   },
   {
@@ -74,7 +74,11 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   linkActiveClass: 'active',
   history: createWebHashHistory(),
-  routes
+  routes,
+	scrollBehavior(to, from, savedPosition) {
+		// 始终滚动到顶部
+		return { top:0,behavior: 'smooth', }
+	},
 })
 router.afterEach((to, from) => {
   document.title = ((i18n.global.locale.value === 'zh') ? 'Hibi 博客站' : 'Hibi Blog') + '-' + to.meta.title

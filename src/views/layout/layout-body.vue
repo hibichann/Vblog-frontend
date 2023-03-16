@@ -13,16 +13,16 @@
               <router-link to="/classify"><i class="fa fa-puzzle-piece"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.category') }}</router-link>
               <div class="routeline"></div>
             </li>
+            <li>
+              <router-link to="/archive"><i class="fa fa-tasks"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.archive') }}</router-link>
+              <div class="routeline"></div>
+            </li>
 
             <!-- !!!TODO 暂停相册开发 -->
             <!-- <li>
               <router-link to="/album"><i class="fa fa-picture-o"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.album') }}</router-link>
               <div class="routeline"></div>
             </li> -->
-            <li>
-              <router-link to="/test"><i class="fa fa-puzzle-piece"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.test') }}</router-link>
-              <div class="routeline"></div>
-            </li>
             <li>
               <router-link to="/tags"><i class="fa fa-tag"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.tags') }}</router-link>
               <div class="routeline"></div>
@@ -33,7 +33,7 @@
                   @click="switchLanguage"
                   class="language"
                 >
-                  {{ $t('meg.language') }}
+                  <i class="fa fa-language"></i>
                 </div>
               </div>
             </li>
@@ -41,7 +41,6 @@
         </nav>
       </div>
     </div>
-    <div style="height: 0px"></div>
     <keep-alive> <swiper-body-vue></swiper-body-vue></keep-alive>
     <slot></slot>
     <div class="layout-bottom">bottom</div>
@@ -54,7 +53,7 @@ import { useI18n } from 'vue-i18n'
 import store from '@/store'
 const i18n = useI18n()
 const switchLanguage = () => {
-  i18n.locale.value === 'zh' ? (i18n.locale.value = 'en') : (i18n.locale.value = 'zh')
+  i18n.locale.value === 'cn' ? (i18n.locale.value = 'en') : (i18n.locale.value = 'cn')
   window.localStorage.setItem('lang', i18n.locale.value)
   location.reload()
 }
@@ -114,7 +113,7 @@ const switchLanguage = () => {
     li {
       user-select: none;
       display: block;
-      min-width: 70px;
+      min-width: 60px;
       height: 40px;
       font-size: 25px;
       text-align: center;
@@ -124,6 +123,7 @@ const switchLanguage = () => {
       color: #5c503a;
       .languageDiv div {
         position: relative;
+        font-size: 26px;
         top: 0px;
       }
       a {
@@ -154,7 +154,7 @@ const switchLanguage = () => {
         }
       }
       .active + .routeline {
-        width: 70% !important;
+        width: 100% !important;
         margin: 0 auto;
       }
       .routeline {

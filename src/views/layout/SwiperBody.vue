@@ -1,5 +1,8 @@
 <template>
-  <div :class="'default ' + className">
+  <div
+    class="default"
+    v-if="ifShow"
+  >
     <swiper
       class="mySwiper"
       :modules="modules"
@@ -74,14 +77,14 @@ const handleBlur = () => {
   searchValue.value = ''
 }
 
-const className = ref('')
+const ifShow = ref(true)
 watch(
   () => router.currentRoute.value.path,
   (newValue, oldValue) => {
     if (newValue !== '/') {
-      className.value = ''
+      ifShow.value = false
     } else {
-      className.value = 'addition'
+      ifShow.value = true
     }
   },
   { immediate: true }
@@ -123,7 +126,7 @@ const scroll1 = () => {
   z-index: 9;
   transform: translate(-50%);
   left: 50%;
-  top: 70vh;
+  top: 40vh;
   transition: all 1s;
   input {
     background: rgba(0, 0, 0, 0.5);
@@ -155,8 +158,6 @@ img {
   position: relative;
   left: 100%;
   object-fit: cover;
-  // width: calc(0.65 * 1920px);
-  // height: calc(0.65 * 1080px);
   margin: auto;
   filter: sepia(60%);
   transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
@@ -164,6 +165,8 @@ img {
 .imgbox {
   position: relative;
   backdrop-filter: blur(10px) sepia(60%);
+  text-align: center;
+  vertical-align: middle;
   // background-color: rgb(105, 99, 82);
 }
 .imgspan .imgspan2::before {
@@ -178,7 +181,7 @@ img {
   font-weight: bolder;
   position: absolute;
   transform: translate(-50%);
-  top: 70vh;
+  top: 40vh;
   left: 50%;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
   animation: trans 2s ease-out infinite alternate;
@@ -197,7 +200,7 @@ img {
   position: absolute;
   color: rgb(255, 255, 255);
   transform: translate(-50%);
-  top: 10%;
+  top: 0vh;
   left: 50%;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
   transition: color 1s, font-size 1s cubic-bezier(0.04, 0.94, 0.81, 1);
@@ -234,12 +237,10 @@ img {
 .mySwiper {
   display: block;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(70vh - 50px);
+  // height: 60vh;
 }
 .default {
-  display: none;
-}
-.addition {
-  display: block !important;
+  display: block;
 }
 </style>

@@ -8,20 +8,20 @@
         />
         <span class="name">Hibichann</span>
         <div class="info">
-          <div>
+          <div @click="handleClick('archive')">
             <span>{{ $t('meg.articles') }}</span
-            ><span>123</span>
+            ><span>ZH&nbsp;{{ card1?.art.cnTotal }}&nbsp;/&nbsp;EN&nbsp;{{ card1?.art.enTotal }}</span>
           </div>
-          <div>
+          <div @click="handleClick('classify')">
             <span>{{ $t('meg.category') }}</span
-            ><span>34</span>
+            ><span>{{ card1?.cate }}</span>
           </div>
-          <div>
+          <div @click="handleClick('tags')">
             <span>{{ $t('meg.tags') }}</span
-            ><span>46</span>
+            ><span>{{ card1?.tag }}</span>
           </div>
         </div>
-        <i class="fa fa-envelope"></i>
+        <a href="mailto:coder101011@outlook.com"> <i class="fa fa-envelope"></i></a>
       </div>
     </div>
     <div class="second">
@@ -30,24 +30,12 @@
           <i class="fa fa-tag"></i><span>&nbsp;&nbsp;{{ $t('meg.tags') }}</span>
         </div>
         <div class="tags">
-          <span class="active">Vue</span>
-          <span>Jdposmf</span>
-          <span>my3sql</span>
-          <span>标签</span>
-          <span>Jdposmf</span>
-          <span>mysql</span>
-          <span>Vue</span>
-          <span>Jdposmf</span>
-          <span>Vue</span>
-          <span>Jdposmf</span>
-          <span>mys33ql</span>
-          <span>标签</span>
-          <span>mysql</span>
-          <span>标签</span>
-          <span>Vue</span>
-          <span>Jdposmf</span>
-          <span>mysql</span>
-          <span>标签</span>
+          <span
+            v-for="i in card2"
+            :key="i.tag_id"
+            @click="handleClick('classifyDetail', { id: i.tag_id, menuName: i.tag_name, type: 'tag' })"
+            >{{ i.tag_name }}</span
+          >
         </div>
       </div>
     </div>
@@ -82,6 +70,22 @@
 
 <script lang="ts" name="" setup>
 import CateMenuVue from '@/components/CateMenu.vue'
+import { getAllTags, getCard1 } from '@/request/api'
+import '@/request/api/types'
+import router from '@/router'
+import { onMounted, ref } from 'vue'
+const card1 = ref<card1 | null>(null)
+const card2 = ref<allTags | null>(null)
+onMounted(async () => {
+  card1.value = await getCard1()
+  card2.value = await getAllTags()
+})
+const handleClick = (name, query?) => {
+  router.push({
+    name,
+    query
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -136,6 +140,9 @@ import CateMenuVue from '@/components/CateMenu.vue'
         display: block;
         text-align: center;
       }
+      span:last-child {
+        font-size: 14px;
+      }
     }
     div:hover {
       color: rgb(69, 165, 165);
@@ -151,10 +158,6 @@ import CateMenuVue from '@/components/CateMenu.vue'
     margin-bottom: 15px;
   }
   .tags {
-    .active {
-      background-color: #cfcfcf;
-      border-radius: 10px;
-    }
     span {
       color: rgb(48, 48, 48);
       display: inline-block;

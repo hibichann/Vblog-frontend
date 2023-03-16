@@ -6,12 +6,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { getBlogByPage } from './request/api'
+import { getArchive } from './request/api'
 import layoutBodyVue from './views/layout/layout-body.vue'
 import { useRoute } from 'vue-router'
 import { computed, onMounted } from 'vue'
 import store from '@/store'
-getBlogByPage({ page: 1 })
+getArchive()
 const isMobile = () => {
   let flag = navigator.userAgent.match(/(phone|pod|iPhone|iPod|ios|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
   return flag

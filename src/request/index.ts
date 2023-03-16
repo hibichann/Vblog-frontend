@@ -1,15 +1,16 @@
-import axios from 'axios'
+import axios,{AxiosRequestConfig} from 'axios'
 import { ElMessage } from 'element-plus'
 // 创建一个 axios 实例
 const service = axios.create({
-  baseURL: '/api',
+  baseURL: 'http://localhost:3000',
   timeout: 30000, // 请求超时时间毫秒
-  withCredentials: true, // 异步请求携带cookie
+  withCredentials: false, // 异步请求携带cookie
   headers: {
     'Content-Type': 'application/json',
     'token': 'your token',
     'lang': window.localStorage.getItem('lang'),
-    'X-Requested-With': 'XMLHttpRequest'
+    'X-Requested-With': 'XMLHttpRequest',
+    'Access-Control-Allow-Origin': '*'
   }
 })
 
@@ -45,4 +46,8 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-export default service
+export default <T = any> (config:AxiosRequestConfig)=>{
+  return service(config).then(res => {
+    return res as unknown as T
+  })
+}

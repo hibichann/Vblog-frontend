@@ -1,22 +1,21 @@
 <template>
-  <!-- 文章详情页面 -->
+  <!-- 分类页面 -->
   <div class="classify">
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
-        <div class="left-body md:py-30 md:yx-10 p-0">
-          <div class="left p-0">
-            <div class="title">
-              <span class="spanTitle">{{ article.title }}</span>
-              <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
+        <div class="left-body">
+          <div class="left">
+            <div class="">共计：33</div>
+            <div>
+              <div>
+                2023
+                <div>4-1</div>
+              </div>
             </div>
-            <div
-              class="markdown-body"
-              v-highlight
-              v-html="marked(article.content.toString())"
-            ></div>
-          </div></div
-      ></el-col>
+          </div>
+        </div>
+      </el-col>
       <el-col :span="spanWidth[2]"></el-col>
       <el-col :span="spanWidth[3]">
         <div class="right-body">
@@ -28,30 +27,13 @@
 </template>
 <script lang="ts" setup>
 import PlainCardVue from '@/components/PlainCard.vue'
-import { getArticle } from '@/request/api'
-import { marked } from 'marked'
+import CateMenuVue from '@/components/CateMenu.vue'
 import { ElRow, ElCol } from 'element-plus'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
-import { useRoute } from 'vue-router'
-var dayjs = require('dayjs')
-const article = ref({
-  id: 0,
-  title: '文章不存在',
-  content: 0,
-  date: '2023-02-07T03:20:52.000Z',
-  createdate: '2022-11-14T05:57:47.000Z',
-  status: 1,
-  cnname: ''
-})
-const route = useRoute()
-onMounted(async () => {
-  article.value = (await getArticle({ id: route.query.id! as unknown as number })) as any
-})
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
-  //低于= 1080p不显示右侧栏
-  //@ts-ignore
+  //低于1080p不显示右侧栏
   if (store.state.isMobile) {
     spanWidth.value[0] = 1
     spanWidth.value[1] = 22
@@ -82,39 +64,19 @@ onBeforeUnmount(() => {
   background-attachment: fixed;
 }
 .left-body {
-  background-color: transparent;
+  background-color: rgb(255, 255, 255) !important;
   margin: 50px 0;
   border-radius: 10px;
-  backdrop-filter: blur(5px) brightness(40%);
+  padding: 50px !important;
   .el-menu-item:deep {
     color: white !important;
   }
 }
 .left {
-  // display: flex;
   width: 100%;
   height: 100%;
-  background-color: white;
-  min-height: 50px;
-  border-radius: 10px;
-  .title {
-    padding-top: 50px;
-    display: flex;
-    // width: 100%;
-    flex-direction: column;
-    align-items: center;
-    .spanTitle {
-      // display: block;
-      font-size: 30px;
-      margin-bottom: 20px;
-    }
-    .spanTime {
-      font-size: 16px;
-      color: rgb(73, 73, 73);
-    }
-  }
-  div {
-    margin: 50px;
+  div:first-child {
+    font-size: 24px;
   }
 }
 .right-body {
