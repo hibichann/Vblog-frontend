@@ -8,13 +8,7 @@
           <div class="left">
             <div class="mx-5 py-5 text-lg"><i class="fa fa-puzzle-piece"></i>&nbsp;{{ $t('meg.tags') }}</div>
             <div class="tags mx-5 pb-5">
-              <!-- <span
-                :style="{ color: colorRandom(), fontSize: sizeRandom() }"
-                v-for="i in tagsArr"
-                :key="i.tag_id"
-                @click="handleClick('classifyDetail', { id: i.tag_id, menuName: i.tag_name, type: 'tag' })"
-                >{{ i.tag_name }}</span
-              > -->
+              <word :arr="tagsArr"></word>
             </div>
           </div>
         </div>
@@ -31,11 +25,11 @@
 <script lang="ts" setup>
 import PlainCardVue from '@/components/PlainCard.vue'
 import { ElRow, ElCol } from 'element-plus'
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 import { getAllTags } from '@/request/api'
 import '@/request/api/types'
-import router from '@/router'
+import word from '@/components/word.vue'
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
   if (store.state.isMobile) {
@@ -52,16 +46,7 @@ const checkWidth = () => {
     spanWidth.value[4] = 2
   }
 }
-const handleClick = (name, query?) => {
-  router.push({
-    name,
-    query
-  })
-}
-const colorArr = ['coral', 'darkcyan', 'chocolate', 'brown', 'deeppink', 'limegreen', 'orange']
-const fontSize = ['14px', '18px', '22px', '26px']
-const colorRandom = () => colorArr[Math.floor(Math.random() * colorArr.length)]
-const sizeRandom = () => fontSize[Math.floor(Math.random() * fontSize.length)]
+
 const tagsArr = ref<allTags>([])
 onMounted(async () => {
   checkWidth()
