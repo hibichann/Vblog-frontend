@@ -43,10 +43,6 @@ const checkWidth = () => {
 }
 onMounted(() => {
   checkWidth()
-  window.addEventListener('resize', checkWidth)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkWidth)
 })
 </script>
 <style lang="scss" scoped>
@@ -57,13 +53,6 @@ onBeforeUnmount(() => {
   background-attachment: fixed;
 }
 .left-body {
-  // background-color: rgb(255, 255, 255);
-  // margin: 50px 0;
-  // border-radius: 10px;
-  // padding: 50px;
-  .el-menu-item:deep {
-    color: white !important;
-  }
   background-color: transparent;
   margin: 50px 0;
   border-radius: 10px;

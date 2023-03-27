@@ -54,3 +54,10 @@ export function getCard1 () {
     method: 'get',
   })
 }
+//card4
+export function getCard4 () {
+  return service<card1>({
+    url: '/getCard4',
+    method: 'get',
+  })
+}

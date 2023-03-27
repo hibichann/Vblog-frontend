@@ -1,5 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import i18n from '../language/index.js'
 // import { getCurrentInstance } from 'vue'
@@ -8,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: () => import('../views/HomeView.vue'),
     meta: {
       title: i18n.global.t('meg.home')
     }
@@ -73,7 +72,7 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   linkActiveClass: 'active',
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 	scrollBehavior(to, from, savedPosition) {
 		// 始终滚动到顶部

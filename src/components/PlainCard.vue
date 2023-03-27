@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- card4移动到了第二张的位置 -->
     <div class="first">
       <div class="content">
         <img
@@ -21,7 +22,28 @@
             ><span>{{ card1?.tag }}</span>
           </div>
         </div>
-        <a href="mailto:coder101011@outlook.com"> <i class="fa fa-envelope"></i></a>
+        <a href="mailto:Hibi<coder101011@outlook.com>"> <i class="fa fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="fourth">
+      <div class="content">
+        <div class="category">
+          <i class="fa fa-tasks"></i><span>&nbsp;&nbsp;{{ $t('meg.finNew') }}</span>
+        </div>
+        <div
+          class="body"
+          v-for="i in card4"
+          :key="i.id"
+        >
+          <div class="art">
+            <div class="title">
+              <div @click="toArticleDetail(i.id)">{{ i.title }}</div>
+            </div>
+            <div class="content1">
+              <div>{{ i.content }}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="second">
@@ -47,44 +69,31 @@
         <div><CateMenuVue></CateMenuVue></div>
       </div>
     </div>
-    <div class="fourth">
-      <div class="content">
-        <div class="category">
-          <i class="fa fa-tasks"></i><span>&nbsp;&nbsp;{{ $t('meg.finNew') }}</span>
-        </div>
-        <div
-          class="body"
-          v-for="i in 5"
-          :key="i"
-        >
-          <div class="img"><img src="https://pic2.zhimg.com/v2-8cc589398d0576b41e365af19b9e9325_r.jpg" /></div>
-          <div class="art">
-            <div class="title"><div>Vuejs文章标题Vuejs文章标题Vuejs文章标题Vuejs文章标题Vuejs文章标题Vuejs文章标题Vuejs文章标题</div></div>
-            <div class="content1"><div>Vuejs文章正文Vuejs文章正文Vuejs文章正文Vuejs文章正文Vuejs文章正文Vuejs文章正文Vuejs文章正文</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts" name="" setup>
 import CateMenuVue from '@/components/CateMenu.vue'
-import { getAllTags, getCard1 } from '@/request/api'
+import { getAllTags, getCard1, getCard4 } from '@/request/api'
 import '@/request/api/types'
 import router from '@/router'
 import { onMounted, ref } from 'vue'
 const card1 = ref<card1 | null>(null)
 const card2 = ref<allTags | null>(null)
+const card4 = ref<any | null>(null)
 onMounted(async () => {
   card1.value = await getCard1()
   card2.value = await getAllTags()
+  card4.value = await getCard4()
 })
 const handleClick = (name, query?) => {
   router.push({
     name,
     query
   })
+}
+const toArticleDetail = (id) => {
+  router.push({ name: 'articleDetail', query: { id } })
 }
 </script>
 
@@ -131,6 +140,7 @@ const handleClick = (name, query?) => {
     margin: 20px 0;
     width: 100%;
     display: flex;
+    width: 90%;
     flex-direction: row;
     justify-content: space-evenly;
     div {
@@ -210,7 +220,7 @@ const handleClick = (name, query?) => {
       flex: 1;
       min-width: 0;
       width: 80%;
-      font-size: 16px;
+      font-size: 18px;
       color: rgb(58, 58, 58);
       div {
         overflow: hidden;
@@ -227,9 +237,9 @@ const handleClick = (name, query?) => {
       flex: 1;
       padding: 5px 10px;
       min-width: 0;
-      font-size: 12px;
+      font-size: 14px;
       min-width: 0;
-      width: 80%;
+      width: 100%;
       div {
         overflow: hidden;
         font-weight: 500;

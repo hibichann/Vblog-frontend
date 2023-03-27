@@ -1,5 +1,5 @@
 <template>
-  <!-- 分类页面 -->
+  <!-- 归档页面 -->
   <div class="classify">
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
@@ -27,7 +27,6 @@
 </template>
 <script lang="ts" setup>
 import PlainCardVue from '@/components/PlainCard.vue'
-import CateMenuVue from '@/components/CateMenu.vue'
 import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
@@ -50,10 +49,6 @@ const checkWidth = () => {
 }
 onMounted(() => {
   checkWidth()
-  window.addEventListener('resize', checkWidth)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkWidth)
 })
 </script>
 <style lang="scss" scoped>
@@ -68,9 +63,6 @@ onBeforeUnmount(() => {
   margin: 50px 0;
   border-radius: 10px;
   padding: 50px !important;
-  .el-menu-item:deep {
-    color: white !important;
-  }
 }
 .left {
   width: 100%;

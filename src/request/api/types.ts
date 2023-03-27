@@ -21,11 +21,3 @@ type card1 ={
     cate: number
     tag: number
 }
-type card2 ={
-    art: {
-        enTotal: string
-        cnTotal: string
-      }
-    cate: number
-    tag: number
-}

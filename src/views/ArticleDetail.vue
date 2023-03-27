@@ -5,7 +5,7 @@
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
         <div class="left-body md:py-30 md:yx-10 p-0">
-          <div class="left p-0">
+          <div class="left">
             <div class="title">
               <span class="spanTitle">{{ article.title }}</span>
               <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
@@ -68,10 +68,6 @@ const checkWidth = () => {
 }
 onMounted(() => {
   checkWidth()
-  window.addEventListener('resize', checkWidth)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkWidth)
 })
 </script>
 <style lang="scss" scoped>
@@ -86,9 +82,6 @@ onBeforeUnmount(() => {
   margin: 50px 0;
   border-radius: 10px;
   backdrop-filter: blur(5px) brightness(40%);
-  .el-menu-item:deep {
-    color: white !important;
-  }
 }
 .left {
   // display: flex;
@@ -115,6 +108,7 @@ onBeforeUnmount(() => {
   }
   div {
     margin: 50px;
+    padding-bottom: 50px;
   }
 }
 .right-body {

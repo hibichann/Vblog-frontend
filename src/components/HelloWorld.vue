@@ -11,36 +11,42 @@
           >
             {{ '&nbsp;&nbsp;&nbsp;' + title }}
           </div>
-          <CardMDVue
-            v-for="i in list.content"
-            :article="i"
-            :key="i"
-          ></CardMDVue>
+          <div v-if="list.content !== undefined">
+            <CardMDVue
+              v-for="i in list.content"
+              :article="i"
+              :key="i"
+            ></CardMDVue>
+          </div>
           <div class="text-center">
             <div
               class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer hover:text-lg hover:leading-6"
               v-if="props.type === 'home'"
+              @click="handleClick('archive')"
             >
               {{ $t('meg.seemore') }}
             </div>
             <div
               v-else
-              class="flex flex-1 justify-between"
+              class="flex justify-between"
             >
               <div
                 v-show="page !== 1"
-                @click="handleClick('up')"
-                class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
+                @click="handleClick2('up')"
+                class="flex-1 transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
               >
-                上一页
+                {{ $t('meg.up') }}
               </div>
-              <div v-show="page === 1"></div>
+              <div
+                class="flex-1"
+                v-show="page === 1"
+              ></div>
               <div
                 v-show="list.total - page * 10 > 0"
-                @click="handleClick('down')"
-                class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
+                @click="handleClick2('down')"
+                class="flex-1 transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
               >
-                下一页
+                {{ $t('meg.down') }}
               </div>
             </div>
           </div>
@@ -64,6 +70,7 @@ import CardMDVue from './CardMD.vue'
 import store from '@/store'
 import '@/request/api/types'
 import { getBlogByPage, getBlogByTag } from '@/request/api'
+import router from '@/router'
 const props = defineProps({
   type: {
     type: String,
@@ -73,7 +80,7 @@ const props = defineProps({
   id: {
     type: Number,
     default: 1,
-    required: true
+    required: false
   },
   title: {
     type: String,
@@ -101,7 +108,7 @@ const checkWidth = () => {
   }
 }
 const page = ref(1)
-const list = ref<any>({ content: {} })
+const list = ref<any>({})
 const handleList = async (page) => {
   if (props.type === 'cate') {
     list.value = await getBlogByPage({ page, classid: props.id })
@@ -111,7 +118,13 @@ const handleList = async (page) => {
     list.value = await getBlogByPage({ page: 1 })
   }
 }
-const handleClick = (text) => {
+const handleClick = (name, query?) => {
+  router.push({
+    name,
+    query
+  })
+}
+const handleClick2 = (text) => {
   if (text === 'down') {
     page.value += 1
     handleList(page.value)
@@ -124,16 +137,10 @@ const handleClick = (text) => {
     behavior: 'smooth'
   })
 }
-onMounted(async () => {
-  console.log(123, props)
-
+onMounted(() => {
   title.value = props.title
   checkWidth()
-  window.addEventListener('resize', checkWidth)
-  list.value = await handleList(page.value)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkWidth)
+  handleList(page.value)
 })
 </script>
 <style lang="scss" scoped>

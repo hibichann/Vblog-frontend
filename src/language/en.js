@@ -11,6 +11,8 @@ export default {
     CateDetail: 'Category Detail',
     ArtDetail: 'Article Detail',
     seemore: 'See More',
+    up: 'Page up',
+    down: 'Page down',
     archive: 'Archive'
   }
 }

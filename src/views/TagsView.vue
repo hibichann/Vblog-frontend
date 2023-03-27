@@ -8,7 +8,7 @@
           <div class="left">
             <div class="mx-5 py-5 text-lg"><i class="fa fa-puzzle-piece"></i>&nbsp;{{ $t('meg.tags') }}</div>
             <div class="tags mx-5 pb-5">
-              <word :arr="tagsArr"></word>
+              <word></word>
             </div>
           </div>
         </div>
@@ -27,7 +27,6 @@ import PlainCardVue from '@/components/PlainCard.vue'
 import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
-import { getAllTags } from '@/request/api'
 import '@/request/api/types'
 import word from '@/components/word.vue'
 const spanWidth = ref([2, 13, 1, 6, 2])
@@ -47,10 +46,8 @@ const checkWidth = () => {
   }
 }
 
-const tagsArr = ref<allTags>([])
 onMounted(async () => {
   checkWidth()
-  tagsArr.value = await getAllTags()
 })
 onBeforeUnmount(() => {})
 </script>

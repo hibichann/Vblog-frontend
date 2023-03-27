@@ -56,10 +56,6 @@ const checkWidth = () => {
 }
 onMounted(() => {
   checkWidth()
-  window.addEventListener('resize', checkWidth)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkWidth)
 })
 </script>
 
