@@ -5,12 +5,25 @@
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
         <div class="left-body">
-          <div class="left">
-            <div class="">共计：33</div>
-            <div>
-              <div>
-                2023
-                <div>4-1</div>
+          <div class="left px-2">
+            <div class="rounded-lg text-gray-700 py-4 text-center transition-all hover:bg-pink-50">归档</div>
+            <div class="content">
+              <div class="">
+                <div
+                  class="text-base font-extrabold"
+                  v-for="(i, index) in dates"
+                  :key="index"
+                >
+                  <span>{{ i }}</span>
+                  <div
+                    v-for="j in list[i]"
+                    :key="j.id"
+                    class="m-4 flex flex-col cursor-pointer font-light transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50 rounded-md transition-all md:flex-row"
+                  >
+                    <div class="p-2 font-light transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+                    <div class="p-2 font-light transition-all">{{ j.title }}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -30,6 +43,8 @@ import PlainCardVue from '@/components/PlainCard.vue'
 import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
+import { getArchive } from '@/request/api'
+var dayjs = require('dayjs')
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
   //低于1080p不显示右侧栏
@@ -47,8 +62,25 @@ const checkWidth = () => {
     spanWidth.value[4] = 2
   }
 }
-onMounted(() => {
+const list = ref({})
+const handleDate = (arr) => {
+  const dateDiffObj = {}
+  arr.forEach((dateStr) => {
+    const date = dayjs(dateStr)
+    const diff = dayjs().diff(date, 'month')
+    dateDiffObj[diff] = dateStr
+  })
+  const sortedDates = Object.keys(dateDiffObj)
+    .sort((a: any, b: any) => a - b)
+    .map((diff) => dateDiffObj[diff])
+  return sortedDates // ['2023-03', '2022-12']
+}
+let dates: any = ref([])
+onMounted(async () => {
   checkWidth()
+  list.value = await getArchive()
+  dates.value = handleDate(Object.keys(list.value))
+  console.log(list.value[dates[1]])
 })
 </script>
 <style lang="scss" scoped>

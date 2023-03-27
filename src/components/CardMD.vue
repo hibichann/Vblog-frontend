@@ -24,7 +24,10 @@
             ></i
             >&nbsp;发表于：{{ dayjs(article?.createdate).format('YYYY-MM-DD') }}
           </div>
-          <div><i class="fa fa-puzzle-piece"></i>&nbsp;|&nbsp;{{ article?.cnname }}</div>
+          <div @click="handleClick('classify', { id: article?.class, menuName: article?.typename, type: 'cate' })">
+            <i class="fa fa-puzzle-piece"></i>
+            &nbsp;|&nbsp;{{ article?.typename }}
+          </div>
         </div>
         <div
           class="detail"
@@ -46,6 +49,12 @@ const props = defineProps({
     type: Object
   }
 })
+const handleClick = (name, query?) => {
+  router.push({
+    name,
+    query
+  })
+}
 const article = ref(props.article)
 const toArticleDetail = () => {
   console.log(123, article.value!.id)

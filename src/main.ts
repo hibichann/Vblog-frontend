@@ -11,8 +11,6 @@ import i18n from './language/index.js'
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-light.css";
 import "github-markdown-css/github-markdown-light.css"
-// import * as echarts from 'echarts'
-// import 'echarts-wordcloud'
 
 import './assets/css/reset.css'
 import './assets/css/scroll.css'
