@@ -94,7 +94,7 @@ onMounted(async () => {
     }
   }
   .right-body {
-    width: 100%;
+    width: 60%;
     z-index: 99;
     background-color: rgb(255, 255, 255);
     display: flex;

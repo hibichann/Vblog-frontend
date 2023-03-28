@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 import i18n from '../language/index.js'
 // import { getCurrentInstance } from 'vue'
@@ -72,7 +72,7 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   linkActiveClass: 'active',
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 	scrollBehavior(to, from, savedPosition) {
 		// 始终滚动到顶部

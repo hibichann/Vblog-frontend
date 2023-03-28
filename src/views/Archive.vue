@@ -6,22 +6,60 @@
       <el-col :span="spanWidth[1]">
         <div class="left-body">
           <div class="left px-2">
-            <div class="rounded-lg text-gray-700 py-4 text-center transition-all hover:bg-pink-50">归档</div>
+            <div class="rounded-lg text-3xl p-5 text-gray-700 text-center transition-all hover:bg-pink-50">共计：33</div>
             <div class="content">
-              <div class="">
+              <el-tabs
+                tab-position="left"
+                v-if="!store.state.isMobile"
+              >
+                <el-tab-pane :label="'全部'">
+                  <div
+                    class="px-9 text-base font-extrabold"
+                    v-for="(i, index) in dates"
+                    :key="index"
+                  >
+                    <span class="text-2xl">{{ i }}</span>
+                    <div
+                      @click="toArt(j.id)"
+                      v-for="j in list[i]"
+                      :key="j.id"
+                      class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50 md:flex-row"
+                    >
+                      <div class="p-2 w-1/6 text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+                      <div class="p-2 w-5/6 text-xl transition-all overflow">{{ j.title }}</div>
+                    </div>
+                  </div>
+                </el-tab-pane>
+                <el-tab-pane
+                  :label="i"
+                  v-for="i in dates"
+                >
+                  <div
+                    @click="toArt(j.id)"
+                    v-for="j in list[i]"
+                    :key="j.id"
+                    class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50 md:flex-row"
+                  >
+                    <div class="p-2 w-1/6 text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+                    <div class="p-2 w-5/6 text-xl transition-all overflow">{{ j.title }}</div>
+                  </div></el-tab-pane
+                >
+              </el-tabs>
+              <div v-else>
                 <div
                   class="text-base font-extrabold"
                   v-for="(i, index) in dates"
                   :key="index"
                 >
-                  <span>{{ i }}</span>
+                  <span class="text-2xl">{{ i }}</span>
                   <div
+                    @click="toArt(j.id)"
                     v-for="j in list[i]"
                     :key="j.id"
-                    class="m-4 flex flex-col cursor-pointer font-light transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50 rounded-md transition-all md:flex-row"
+                    class="m-4 flex cursor-pointer rounded-md transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50"
                   >
-                    <div class="p-2 font-light transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
-                    <div class="p-2 font-light transition-all">{{ j.title }}</div>
+                    <div class="w-1/3 text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+                    <div class="w-2/3 text-xl transition-all overflow">{{ j.title }}</div>
                   </div>
                 </div>
               </div>
@@ -44,6 +82,7 @@ import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 import { getArchive } from '@/request/api'
+import router from '@/router'
 var dayjs = require('dayjs')
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
@@ -62,6 +101,9 @@ const checkWidth = () => {
     spanWidth.value[4] = 2
   }
 }
+const toArt = (id) => {
+  router.push({ name: 'articleDetail', query: { id: id || 1 } })
+}
 const list = ref({})
 const handleDate = (arr) => {
   const dateDiffObj = {}
@@ -76,14 +118,45 @@ const handleDate = (arr) => {
   return sortedDates // ['2023-03', '2022-12']
 }
 let dates: any = ref([])
+let rawDates: any = []
+let rawList: any = []
 onMounted(async () => {
   checkWidth()
   list.value = await getArchive()
   dates.value = handleDate(Object.keys(list.value))
-  console.log(list.value[dates[1]])
+  rawDates = dates.value
+  rawList = list.value
 })
 </script>
 <style lang="scss" scoped>
+.overflow {
+  text-overflow: ellipsis; /* 溢出显示省略号 */
+  overflow: hidden; /* 溢出隐藏 */
+  white-space: nowrap; /* 强制不换行 */
+}
+:deep(.el-tabs__item) {
+  font-size: large !important;
+  height: 60px;
+  line-height: 60px !important;
+  font-weight: bolder !important;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 550ms;
+  border-radius: 10px 0 0 10px;
+}
+:deep(.el-tabs__item:hover) {
+  background-color: rgb(217, 237, 255) !important;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+:deep(.el-tabs__active-bar) {
+  width: 15px !important;
+  height: 15px !important;
+  top: 10px !important;
+  border-radius: 15px;
+  background-color: rgb(116, 139, 170) !important;
+}
 .classify {
   background-image: url('../../public/img/bg0.png');
   background-repeat: no-repeat;
@@ -99,9 +172,6 @@ onMounted(async () => {
 .left {
   width: 100%;
   height: 100%;
-  div:first-child {
-    font-size: 24px;
-  }
 }
 .right-body {
   width: 100%;
