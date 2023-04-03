@@ -10,7 +10,7 @@ const i18n = createI18n({
   }
 })
 if (window.localStorage.getItem('lang') !== 'cn' && window.localStorage.getItem('lang') !== 'en') {
-  window.localStorage.setItem('lang', 'cn')
+  window.localStorage.setItem('lang', 'en')
 }
 i18n.global.locale.value = window.localStorage.getItem('lang')
 export default i18n

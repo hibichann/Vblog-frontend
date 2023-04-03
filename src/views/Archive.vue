@@ -14,19 +14,19 @@
               >
                 <el-tab-pane :label="'全部'">
                   <div
-                    class="px-9 text-base font-extrabold"
+                    class="px-9 text-base"
                     v-for="(i, index) in dates"
                     :key="index"
                   >
-                    <span class="text-2xl">{{ i }}</span>
+                    <span class="text-2xl font-bold text-yellow-900"> <i class="fa fa-calendar"></i>&nbsp;{{ i }}</span>
                     <div
                       @click="toArt(j.id)"
                       v-for="j in list[i]"
                       :key="j.id"
-                      class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50 md:flex-row"
+                      class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose text-yellow-800 hover:text-blue-600 hover:ml-2 hover:bg-pink-50 md:flex-row"
                     >
-                      <div class="p-2 w-1/6 text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
-                      <div class="p-2 w-5/6 text-xl transition-all overflow">{{ j.title }}</div>
+                      <div class="p-2 w-1/6 font-midium text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+                      <div class="p-2 w-5/6 font-midium text-xl transition-all overflow">{{ j.title }}</div>
                     </div>
                   </div>
                 </el-tab-pane>
@@ -38,10 +38,10 @@
                     @click="toArt(j.id)"
                     v-for="j in list[i]"
                     :key="j.id"
-                    class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50 md:flex-row"
+                    class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose text-yellow-800 hover:text-blue-600 hover:ml-2 hover:bg-pink-50 md:flex-row"
                   >
-                    <div class="p-2 w-1/6 text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
-                    <div class="p-2 w-5/6 text-xl transition-all overflow">{{ j.title }}</div>
+                    <div class="p-2 w-1/6 font-midium text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+                    <div class="p-2 w-5/6 font-midium text-xl transition-all overflow">{{ j.title }}</div>
                   </div></el-tab-pane
                 >
               </el-tabs>
@@ -51,15 +51,15 @@
                   v-for="(i, index) in dates"
                   :key="index"
                 >
-                  <span class="text-2xl">{{ i }}</span>
+                  <span class="text-2xl font-bold text-yellow-900">{{ i }}</span>
                   <div
                     @click="toArt(j.id)"
                     v-for="j in list[i]"
                     :key="j.id"
-                    class="m-4 flex cursor-pointer rounded-md transition-all leading-loose hover:text-indigo-500 hover:bg-pink-50"
+                    class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose text-yellow-800 hover:text-blue-600 hover:ml-2 hover:bg-pink-50 md:flex-row"
                   >
-                    <div class="w-1/3 text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
-                    <div class="w-2/3 text-xl transition-all overflow">{{ j.title }}</div>
+                    <div class="w-1/3 text-sm font-midium transition-all"><i class="fa fa-calendar"></i>&nbsp;{{ dayjs(j.createdate).format('M-D') }}</div>
+                    <div class="w-2/3 text-xl font-midium transition-all overflow">{{ j.title }}</div>
                   </div>
                 </div>
               </div>
@@ -129,6 +129,9 @@ onMounted(async () => {
 })
 </script>
 <style lang="scss" scoped>
+// * {
+//   color: rgb(224, 123, 0);
+// }
 .overflow {
   text-overflow: ellipsis; /* 溢出显示省略号 */
   overflow: hidden; /* 溢出隐藏 */
@@ -140,12 +143,13 @@ onMounted(async () => {
   line-height: 60px !important;
   font-weight: bolder !important;
   transition-property: all;
+  color: darkgoldenrod;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 550ms;
+  transition-duration: 150ms;
   border-radius: 10px 0 0 10px;
 }
 :deep(.el-tabs__item:hover) {
-  background-color: rgb(217, 237, 255) !important;
+  background-color: rgb(255, 234, 210) !important;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;

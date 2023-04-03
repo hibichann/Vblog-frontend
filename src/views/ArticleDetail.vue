@@ -4,19 +4,22 @@
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
-        <div class="left-body md:py-30 md:yx-10 p-0">
+        <div class="left-body">
           <div class="left">
             <div class="title">
               <span class="spanTitle">{{ article.title }}</span>
               <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
             </div>
             <div
-              class="markdown-body"
+              class="markdown-body pb-24"
               v-highlight
               v-html="marked(article.content.toString())"
             ></div>
-          </div></div
-      ></el-col>
+            <div id="gitalk-container"></div>
+            <div class="h-10"></div>
+          </div>
+        </div>
+      </el-col>
       <el-col :span="spanWidth[2]"></el-col>
       <el-col :span="spanWidth[3]">
         <div class="right-body">
@@ -44,6 +47,16 @@ const article = ref({
   status: 1,
   cnname: ''
 })
+//@ts-ignore
+const gitalk = new Gitalk({
+  clientID: 'f23a3794037ee7e92a46',
+  clientSecret: '85fabb1fefc584abd420b2d16d27f2bb14f8956d',
+  repo: 'blogcomment',
+  title: article.value.id,
+  owner: 'hibichann', //
+  admin: ['hibichann'], //github用户名
+  language: window.localStorage.getItem('lang') === 'cn' ? 'zh-CN' : 'en'
+})
 const route = useRoute()
 onMounted(async () => {
   article.value = (await getArticle({ id: route.query.id! as unknown as number })) as any
@@ -68,6 +81,7 @@ const checkWidth = () => {
 }
 onMounted(() => {
   checkWidth()
+  gitalk.render('gitalk-container')
 })
 </script>
 <style lang="scss" scoped>
@@ -108,7 +122,6 @@ onMounted(() => {
   }
   div {
     margin: 50px;
-    padding-bottom: 50px;
   }
 }
 .right-body {

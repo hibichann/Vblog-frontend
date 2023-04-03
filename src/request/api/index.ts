@@ -56,8 +56,16 @@ export function getCard1 () {
 }
 //card4
 export function getCard4 () {
-  return service<card1>({
+  return service<any>({
     url: '/getCard4',
     method: 'get',
+  })
+}
+//card4
+export function search (params:{str:string}) {
+  return service<any>({
+    url: '/search',
+    method: 'get',
+    params
   })
 }

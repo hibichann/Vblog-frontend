@@ -1,15 +1,11 @@
 <template>
-  <!-- 分类页面 -->
+  <!-- 角落页面 -->
   <div class="classify">
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
         <div class="left-body">
           <div class="left">
-            <div class="mx-3 py-5 text-lg"><i class="fa fa-puzzle-piece"></i>&nbsp;{{ $t('meg.tags') }}</div>
-            <div class="tags mx-5 pb-5">
-              <word></word>
-            </div>
             <div class="mx-3 py-5 text-lg"><i class="fa fa-link"></i>&nbsp;{{ $t('meg.friend') }}</div>
             <div class="mx-3 py-5 text-lg"><i class="fa fa-edit"></i>&nbsp;{{ $t('meg.board') }}</div>
             <div id="gitalk-container"></div>
@@ -31,7 +27,6 @@ import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 import '@/request/api/types'
-import word from '@/components/word.vue'
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
   if (store.state.isMobile) {
@@ -48,8 +43,20 @@ const checkWidth = () => {
     spanWidth.value[4] = 2
   }
 }
+
+//@ts-ignore
+const gitalk = new Gitalk({
+  clientID: 'f23a3794037ee7e92a46',
+  clientSecret: '85fabb1fefc584abd420b2d16d27f2bb14f8956d',
+  repo: 'blogcomment',
+  title: 'board',
+  owner: 'hibichann', //
+  admin: ['hibichann'], //github用户名
+  language: window.localStorage.getItem('lang') === 'cn' ? 'zh-CN' : 'en'
+})
 onMounted(async () => {
   checkWidth()
+  gitalk.render('gitalk-container')
 })
 onBeforeUnmount(() => {})
 </script>

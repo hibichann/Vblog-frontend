@@ -13,6 +13,10 @@ export default {
     seemore: '查看更多',
     up: '上一页',
     down: '下一页',
-    archive: '归档'
+    archive: '归档',
+    board: '留言板',
+    keyword: '关键词',
+    friend: '友情链接',
+    corner: '角落'
   }
 }

@@ -13,6 +13,10 @@ export default {
     seemore: 'See More',
     up: 'Page up',
     down: 'Page down',
-    archive: 'Archive'
+    archive: 'Archive',
+    board: 'Message Board',
+    keyword: 'Keyword',
+    friend: 'Friendship Link',
+    corner: 'Corner'
   }
 }

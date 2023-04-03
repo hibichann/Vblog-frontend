@@ -117,6 +117,9 @@ onMounted(async () => {
         font-weight: 500;
         transition: color 0.3s;
         color: black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .title:hover {
         color: rgb(70, 188, 194);

@@ -53,6 +53,14 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/corner',
+    name: 'corner',
+    component: () => import('../views/Corner.vue'),
+    meta: {
+      title: i18n.global.t('meg.tags')
+    }
+  },
+  {
     path: '/album',
     name: 'album',
     component: () => import('../views/AlbumView.vue'),
