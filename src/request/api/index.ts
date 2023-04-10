@@ -1,7 +1,14 @@
 // 导入axios实例
 import service from '@/request/index'
 import './types'
-
+//上传
+export function postArticle (data) {
+  return service({
+    url: '/postArticle',
+    method: 'post',
+    data
+  })
+}
 //归档
 export function getArchive () {
   return service({

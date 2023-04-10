@@ -17,6 +17,8 @@ export default {
     board: 'Message Board',
     keyword: 'Keyword',
     friend: 'Friendship Link',
-    corner: 'Corner'
+    corner: 'Corner',
+    all: 'All',
+    total: 'Total'
   }
 }

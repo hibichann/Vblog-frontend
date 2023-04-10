@@ -31,7 +31,7 @@
               :class="imgClass2"
               :src="'/img/bg' + (index + 1) + '.png'"
             />
-            <span class="imgspan2">H</span>
+            <span class="imgspan2">{{ spanText[index] }}</span>
             <span
               @click="scroll1"
               class="imgspan3"
@@ -59,7 +59,7 @@
     ></div>
     <el-dialog
       width="80%"
-      top="25vh"
+      top="10vh"
       v-model="searchDialog"
       :show-close="false"
     >
@@ -148,7 +148,8 @@ watch(
 )
 const modules = [Pagination, Scrollbar, Navigation, Autoplay]
 const imgClass2 = ref('')
-const imgClass = ref(['imgspan', '', '', '', '', '', '', '', '', ''])
+const imgClass = ref(['imgspan', '', '', '', '', '', '', '', ''])
+const spanText = ref(['H', 'I', 'B', 'I', 'C', 'H', 'A', 'N', 'N'])
 const onTouchStart = () => {
   imgClass2.value = 'imgTouch'
 }
@@ -222,15 +223,17 @@ img {
   height: 1080px;
   position: relative;
   object-fit: cover;
-  top: 0;
-  left: 0;
+  // top: 0;
+  // left: 0;
   transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
 }
 .imgTouch {
   position: relative;
-  left: 100%;
+  // left: 100%;
+  width: 60vw;
+  height: 60%;
   object-fit: cover;
-  margin: auto;
+  margin: 0 auto;
   filter: sepia(60%);
   transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
 }
@@ -240,6 +243,10 @@ img {
   text-align: center;
   vertical-align: middle;
   // background-color: rgb(105, 99, 82);
+  img {
+    transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
+    margin: 0 auto;
+  }
 }
 .imgspan .imgspan2::before {
   content: '·';

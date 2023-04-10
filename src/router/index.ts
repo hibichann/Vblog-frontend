@@ -75,6 +75,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: i18n.global.t('meg.album')
     }
+  },
+  {
+    path: '/upload',
+    name: 'upload',
+    component: () => import('../views/Upload.vue'),
+    meta: {
+      title: i18n.global.t('meg.album')
+    }
   }
 ]
 

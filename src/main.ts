@@ -17,7 +17,17 @@ import './assets/css/scroll.css'
 import './assets/css/font.css'
 import './assets/css/el.css'
 import './index.css'
+import 'animate.css';
+//md editer
+import VMdEditor from '@kangc/v-md-editor';
+import '@kangc/v-md-editor/lib/style/base-editor.css';
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
+import '@kangc/v-md-editor/lib/theme/style/github.css';
+VMdEditor.use(githubTheme, {
+  Hljs: hljs,
+});
 createApp(App)
+.use(VMdEditor)
 .use(store)
 .use(router)
 .use(i18n)

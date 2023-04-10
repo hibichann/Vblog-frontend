@@ -6,13 +6,13 @@
       <el-col :span="spanWidth[1]">
         <div class="left-body">
           <div class="left px-2">
-            <div class="rounded-lg text-3xl p-5 text-gray-700 text-center transition-all hover:bg-pink-50">共计：33</div>
+            <div class="rounded-lg text-3xl p-5 text-gray-700 text-center transition-all hover:bg-pink-50">{{ $t('meg.total') }}：{{ total }}</div>
             <div class="content">
               <el-tabs
                 tab-position="left"
                 v-if="!store.state.isMobile"
               >
-                <el-tab-pane :label="'全部'">
+                <el-tab-pane :label="$t('meg.all')">
                   <div
                     class="px-9 text-base"
                     v-for="(i, index) in dates"
@@ -118,11 +118,13 @@ const handleDate = (arr) => {
   return sortedDates // ['2023-03', '2022-12']
 }
 let dates: any = ref([])
+const total = ref(0)
 let rawDates: any = []
 let rawList: any = []
 onMounted(async () => {
   checkWidth()
-  list.value = await getArchive()
+  list.value = (await getArchive()).blogGroups
+  total.value = (await getArchive()).total
   dates.value = handleDate(Object.keys(list.value))
   rawDates = dates.value
   rawList = list.value

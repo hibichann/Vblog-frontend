@@ -17,6 +17,8 @@ export default {
     board: '留言板',
     keyword: '关键词',
     friend: '友情链接',
-    corner: '角落'
+    corner: '角落',
+    all: '全部',
+    total: '共计'
   }
 }

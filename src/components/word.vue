@@ -15,24 +15,20 @@ import { EChartsType } from 'echarts'
 import 'echarts-wordcloud'
 import { onMounted, ref } from 'vue'
 
-// const colorArr = ['coral', 'darkcyan', 'chocolate', 'brown', 'deeppink', 'limegreen', 'orange']
-// const fontSize = ['14px', '18px', '22px', '26px']
-// const colorRandom = () => colorArr[Math.floor(Math.random() * colorArr.length)]
-// const sizeRandom = () => fontSize[Math.floor(Math.random() * fontSize.length)]
-
 let tagsArr = <allTags>[]
 const chartDom = ref<any>(null)
 let chart: any = null
 const data = ref<any>([])
 onMounted(async () => {
   tagsArr = await getAllTags()
-  tagsArr.forEach((i) => {
+  tagsArr.forEach((i) =>
     data.value.push({
       name: i.tag_name,
       value: Math.random() * 100,
       id: i.tag_id
     })
-  })
+  )
+
   chart = echarts.init(chartDom.value) as EChartsType
   chart.setOption({
     series: [

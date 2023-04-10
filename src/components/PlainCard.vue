@@ -22,7 +22,12 @@
             ><span>{{ card1?.tag }}</span>
           </div>
         </div>
-        <a href="mailto:Hibi<coder101011@outlook.com>"> <i class="fa fa-envelope"></i></a>
+        <a
+          alt="'coder101011@outlook.com'"
+          href="mailto:Hibi<coder101011@outlook.com>"
+        >
+          <i class="fa fa-envelope"></i
+        ></a>
       </div>
     </div>
     <div class="fourth">
@@ -118,6 +123,7 @@ const toArticleDetail = (id) => {
     font-size: 20px;
     margin-bottom: 20px;
   }
+  .pfp:hover,
   i:hover {
     cursor: pointer;
     animation: aa 0.5s;
