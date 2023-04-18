@@ -1,6 +1,5 @@
 <template>
   <div :class="'layout-body'">
-    <div style="height: 50px"></div>
     <transition
       name="slide-fade"
       appear
@@ -79,6 +78,7 @@ import SwiperBodyVue from './SwiperBody.vue'
 import { useI18n } from 'vue-i18n'
 import store from '@/store'
 import { onMounted, watch, ref } from 'vue'
+import { useRoute } from 'vue-router'
 const i18n = useI18n()
 const switchLanguage = () => {
   i18n.locale.value === 'cn' ? (i18n.locale.value = 'en') : (i18n.locale.value = 'cn')
@@ -88,22 +88,32 @@ const switchLanguage = () => {
 let top = ref(0)
 let navShow = ref(true)
 onMounted(() => {
+  navShow.value = true
   window.addEventListener('scroll', () => {
     top.value = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
   })
 })
-watch(top, (newValue, oldValue) => {
-  // 等新值大于100的时候再做变化（优化一下）
-  if (newValue > 100) {
-    if (newValue > oldValue) {
-      navShow.value = false
-      console.log('向下滚动')
-    } else {
-      navShow.value = true
-      console.log('向上滚动')
-    }
+const route = useRoute()
+watch(
+  () => route.fullPath,
+  (newV, oldV) => {
+    navShow.value = true
   }
-})
+)
+watch(
+  top,
+  (newValue, oldValue) => {
+    // 等新值大于100的时候再做变化（优化一下）
+    if (newValue > 100 && oldValue) {
+      if (newValue > oldValue) {
+        navShow.value = false
+      } else {
+        navShow.value = true
+      }
+    }
+  },
+  { immediate: true }
+)
 </script>
 <style lang="scss" scoped>
 .slide-fade-enter-active {

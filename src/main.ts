@@ -23,6 +23,9 @@ import VMdEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
 import '@kangc/v-md-editor/lib/theme/style/github.css';
+//gitalk
+// import '@/assets/gitalk/gitalk.css'
+// import '@/assets/gitalk/gitalk.min.js'
 VMdEditor.use(githubTheme, {
   Hljs: hljs,
 });

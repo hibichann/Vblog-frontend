@@ -1,6 +1,8 @@
 <template>
   <!-- 文章列表页 -->
   <div class="Home">
+    <!-- <div style="height: 50px; background-color: transparent"></div> -->
+    <div class="shadow"></div>
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
@@ -144,6 +146,10 @@ onMounted(() => {
 })
 </script>
 <style lang="scss" scoped>
+.shadow {
+  width: 100%;
+  box-shadow: 0 0 20px 20px lightslategray;
+}
 .title {
   width: 30%;
   color: rgb(97, 97, 97);

@@ -1,6 +1,7 @@
 <template>
   <!-- 分类页面 -->
   <div class="classify">
+    <div style="height: 50px; background-color: transparent"></div>
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">

@@ -32,31 +32,30 @@
               :src="'/img/bg' + (index + 1) + '.png'"
             />
             <span class="imgspan2">{{ spanText[index] }}</span>
-            <span
-              @click="scroll1"
-              class="imgspan3"
-            >
-              <i class="fa fa-angle-double-down"></i
-            ></span>
           </div>
         </div>
       </swiper-slide>
+      <wave></wave>
     </swiper>
+    <div id="wavePlace"></div>
+    <div class="beforeSearch text-white font-bold text-7xl hidden md:block">Hibi Blog</div>
     <div
-      :class="'search'"
+      class="search"
       @click="openSearch"
     >
       <input
         disabled
-        class="block text-center appearance-none placeholder-white placeholder-opacity-80 border border-gray-400 rounded-md w-full h-full text-white leading-5 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        class="block text-center cursor-pointer appearance-none placeholder-white placeholder-opacity-80 border border-gray-400 rounded-md w-full h-full text-white leading-5 focus:outline-none focus:ring-2 focus:ring-gray-200"
         :value="searchValue"
-        placeholder="Click to search"
+        placeholder="Tap to search"
       />
     </div>
     <div
-      class="colorline"
-      id="colorline"
-    ></div>
+      @click="scroll1"
+      class="scrollDown"
+    >
+      <i class="fa fa-angle-double-down"></i>
+    </div>
     <el-dialog
       width="80%"
       top="10vh"
@@ -79,7 +78,12 @@
       />
       <div v-for="i in list">
         <div class="art-body">
-          <div class="title">{{ i.title }}</div>
+          <div
+            class="title"
+            @click="toArticleDetail(i.id)"
+          >
+            {{ i.title }}
+          </div>
           <div
             class="content"
             v-html="marked(i?.content.toString())"
@@ -93,6 +97,7 @@
 <script lang="ts" name="" setup>
 import { marked } from 'marked'
 import { Swiper, SwiperSlide } from 'swiper/vue'
+import wave from './wave.vue'
 import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper'
 import 'swiper/css'
 import { ref, watch, computed } from 'vue'
@@ -102,6 +107,9 @@ const searchValue = ref('')
 const searchDialog = ref(false)
 const openSearch = () => {
   searchDialog.value = true
+}
+const toArticleDetail = (id) => {
+  router.push({ name: 'articleDetail', params: { id: id || 1 } })
 }
 const ifShow = ref(true)
 const str = ref('')
@@ -124,7 +132,6 @@ const searchFunc = async () => {
 const handleSearch = debounce(searchFunc, 500)
 
 //颜色
-//  ref('#4285f4')
 const isFoucs = ref(false)
 const changeFoucs = () => {
   isFoucs.value = !isFoucs.value
@@ -170,7 +177,7 @@ const onSlideChange = (s) => {
   })
 }
 const scroll1 = () => {
-  document.getElementById('colorline')?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+  document.getElementById('wavePlace')?.scrollIntoView({ block: 'start', behavior: 'smooth' })
 }
 </script>
 
@@ -198,6 +205,13 @@ const scroll1 = () => {
     border-bottom: 2px solid;
   }
 }
+.beforeSearch {
+  position: absolute;
+  left: 10%;
+  top: 70vh;
+  z-index: 9;
+  text-shadow: 4px 4px 8px #000000;
+}
 .search {
   height: 50px;
   width: 300px;
@@ -207,31 +221,43 @@ const scroll1 = () => {
   z-index: 9;
   transform: translate(-50%);
   left: 50%;
-  top: 40vh;
+  top: 58vh;
   transition: all 1s;
   input {
     background: rgba(0, 0, 0, 0.5);
   }
 }
-.colorline {
-  height: 8px;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
-  background-image: linear-gradient(to left, rgb(122, 36, 89), rgb(187, 4, 4), rgb(168, 90, 0));
+.scrollDown {
+  font-size: 150px;
+  display: block;
+  font-weight: bolder;
+  position: absolute;
+  z-index: 9;
+  transform: translate(-50%);
+  left: 50%;
+  top: 63vh;
+  -webkit-text-stroke: 4px rgb(255, 255, 255);
+  animation: trans 2s ease-out infinite alternate;
+  @keyframes trans {
+    from {
+      color: transparent;
+    }
+    to {
+      color: white;
+    }
+  }
 }
 img {
-  width: 1920px;
-  height: 1080px;
+  width: 2304px;
+  height: 1296px;
   position: relative;
   object-fit: cover;
-  // top: 0;
-  // left: 0;
   transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
 }
 .imgTouch {
   position: relative;
-  // left: 100%;
-  width: 60vw;
-  height: 60%;
+  width: 1920px;
+  height: 1080px;
   object-fit: cover;
   margin: 0 auto;
   filter: sepia(60%);
@@ -255,31 +281,13 @@ img {
   -webkit-text-stroke: 0px rgba(255, 255, 255, 0);
   color: rgb(255, 0, 0);
 }
-.imgspan .imgspan3 {
-  font-size: 150px;
-  font-weight: bolder;
-  position: absolute;
-  transform: translate(-50%);
-  top: 40vh;
-  left: 50%;
-  -webkit-text-stroke: 4px rgb(255, 255, 255);
-  animation: trans 2s ease-out infinite alternate;
-  @keyframes trans {
-    from {
-      color: transparent;
-    }
-    to {
-      color: white;
-    }
-  }
-}
 .imgspan .imgspan2 {
   font-size: 200px;
   font-weight: bolder;
   position: absolute;
   color: rgb(255, 255, 255);
   transform: translate(-50%);
-  top: 0vh;
+  top: 20vh;
   left: 50%;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
   transition: color 1s, font-size 1s cubic-bezier(0.04, 0.94, 0.81, 1);
@@ -316,11 +324,12 @@ img {
 .mySwiper {
   display: block;
   width: 100%;
-  height: calc(70vh - 50px);
+  height: calc(100vh);
   // height: 60vh;
 }
 .default {
   display: block;
+  user-select: none;
 }
 
 .art-body:hover {
@@ -357,6 +366,9 @@ img {
     text-overflow: ellipsis;
   }
   .content {
+    :deep(img) {
+      display: none;
+    }
     position: relative;
     width: 100%;
     top: 10px;

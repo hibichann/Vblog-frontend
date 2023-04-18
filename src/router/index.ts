@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import i18n from '../language/index.js'
 // import { getCurrentInstance } from 'vue'
@@ -31,14 +31,16 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/classify/detail',
     name: 'classifyDetail',
+    props:true,
     component: () => import('../views/ClassifyDetail.vue'),
     meta: {
       title: i18n.global.t('meg.CateDetail')
     }
   },
   {
-    path: '/article/detail',
+    path: '/article/detail/:id',
     name: 'articleDetail',
+    props:true,
     component: () => import('../views/ArticleDetail.vue'),
     meta: {
       title: i18n.global.t('meg.ArtDetail')
@@ -81,14 +83,14 @@ const routes: Array<RouteRecordRaw> = [
     name: 'upload',
     component: () => import('../views/Upload.vue'),
     meta: {
-      title: i18n.global.t('meg.album')
+      title: '上传/Upload'
     }
   }
 ]
 
 const router = createRouter({
   linkActiveClass: 'active',
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 	scrollBehavior(to, from, savedPosition) {
 		// 始终滚动到顶部

@@ -1,6 +1,7 @@
 <template>
   <!-- 文章详情页面 -->
   <div class="classify">
+    <div style="height: 50px; background-color: transparent"></div>
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
@@ -9,6 +10,7 @@
             <div class="title">
               <span class="spanTitle">{{ article.title }}</span>
               <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
+              <div><el-tag>123</el-tag></div>
             </div>
             <div
               class="markdown-body pb-24"
@@ -37,6 +39,8 @@ import { ElRow, ElCol } from 'element-plus'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import store from '@/store'
 import { useRoute } from 'vue-router'
+import './gitalk/gitalk.css'
+import Gitalk from './gitalk/gitalk.min.js'
 var dayjs = require('dayjs')
 const article = ref({
   id: 0,
@@ -47,19 +51,18 @@ const article = ref({
   status: 1,
   cnname: ''
 })
-//@ts-ignore
 const gitalk = new Gitalk({
   clientID: 'f23a3794037ee7e92a46',
   clientSecret: '85fabb1fefc584abd420b2d16d27f2bb14f8956d',
   repo: 'blogcomment',
-  title: article.value.id,
-  owner: 'hibichann', //
-  admin: ['hibichann'], //github用户名
+  title: 'Article Id:' + article.value.id,
+  owner: 'hibichann',
+  admin: ['hibichann'],
   language: window.localStorage.getItem('lang') === 'cn' ? 'zh-CN' : 'en'
 })
 const route = useRoute()
 onMounted(async () => {
-  article.value = (await getArticle({ id: route.query.id! as unknown as number })) as any
+  article.value = (await getArticle({ id: route.params.id! as unknown as number })) as any
 })
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
@@ -121,7 +124,7 @@ onMounted(() => {
     }
   }
   div {
-    margin: 50px;
+    margin: 20px 50px;
   }
 }
 .right-body {

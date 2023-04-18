@@ -1,6 +1,7 @@
 <template>
   <!-- 归档页面 -->
   <div class="classify">
+    <div style="height: 50px; background-color: transparent"></div>
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
@@ -102,7 +103,7 @@ const checkWidth = () => {
   }
 }
 const toArt = (id) => {
-  router.push({ name: 'articleDetail', query: { id: id || 1 } })
+  router.push({ name: 'articleDetail', params: { id: id || 1 } })
 }
 const list = ref({})
 const handleDate = (arr) => {

@@ -1,0 +1,237 @@
+<template>
+  <div>
+    <div class="body">
+      <main class="main">
+        <svg
+          class="wave"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 762 52.917"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <path
+              id="wave"
+              d="M0 0c22.863 0 40.637 25.93 63.5 25.93S104.137 0 127 0s40.637 25.93 63.5 25.93S231.137 0 254 0s40.637 25.93 63.5 25.93S358.137 0 381 0s40.637 25.93 63.5 25.93S485.137 0 508 0s40.637 25.93 63.5 25.93S612.137 0 635 0s40.637 25.93 63.5 25.93S739.137 0 762 0v52.917H0z"
+              fill="purple"
+            ></path>
+          </defs>
+
+          <g>
+            <use
+              href="#wave"
+              rel="external nofollow"
+            ></use>
+          </g>
+
+          <g transform="translate(761 0)">
+            <use
+              href="#wave"
+              rel="external nofollow"
+            ></use>
+          </g>
+        </svg>
+
+        <svg
+          class="wave"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 762 52.917"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <path
+              id="wave"
+              d="M0 0c22.863 0 40.637 25.93 63.5 25.93S104.137 0 127 0s40.637 25.93 63.5 25.93S231.137 0 254 0s40.637 25.93 63.5 25.93S358.137 0 381 0s40.637 25.93 63.5 25.93S485.137 0 508 0s40.637 25.93 63.5 25.93S612.137 0 635 0s40.637 25.93 63.5 25.93S739.137 0 762 0v52.917H0z"
+              fill="purple"
+            ></path>
+          </defs>
+
+          <g>
+            <use
+              href="#wave"
+              rel="external nofollow"
+            ></use>
+          </g>
+
+          <g transform="translate(761 0)">
+            <use
+              href="#wave"
+              rel="external nofollow"
+            ></use>
+          </g>
+        </svg>
+
+        <svg
+          class="wave"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 762 52.917"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <path
+              id="wave"
+              d="M0 0c22.863 0 40.637 25.93 63.5 25.93S104.137 0 127 0s40.637 25.93 63.5 25.93S231.137 0 254 0s40.637 25.93 63.5 25.93S358.137 0 381 0s40.637 25.93 63.5 25.93S485.137 0 508 0s40.637 25.93 63.5 25.93S612.137 0 635 0s40.637 25.93 63.5 25.93S739.137 0 762 0v52.917H0z"
+              fill="purple"
+            ></path>
+          </defs>
+
+          <g>
+            <use
+              href="#wave"
+              rel="external nofollow"
+            ></use>
+          </g>
+
+          <g transform="translate(761 0)">
+            <use
+              href="#wave"
+              rel="external nofollow"
+            ></use>
+          </g>
+        </svg>
+      </main>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" name="" setup></script>
+
+<style lang="scss" scoped>
+.body {
+  height: 250px;
+  display: -webkit-box;
+  display: flex;
+  position: relative;
+  top: -250px;
+  z-index: 9;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.main {
+  background: var(#ffffff00);
+
+  -webkit-box-flex: 1;
+
+  flex: 1;
+
+  width: 100vw;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+
+  bottom: -5%;
+
+  left: 0;
+
+  right: 0;
+}
+
+.wave:nth-of-type(1) {
+  --speed: 90;
+
+  --opacity: 0.3;
+
+  --height: 12;
+
+  --width: 320;
+
+  --lightness: 90;
+  --rise: 2;
+}
+
+.wave:nth-of-type(2) {
+  --speed: 45;
+
+  --opacity: 0.6;
+
+  --height: 10;
+
+  --width: 200;
+
+  --lightness: 95;
+  --rise: 5;
+}
+
+.wave:nth-of-type(3) {
+  --speed: 20;
+
+  --opacity: 1;
+
+  --height: 6;
+
+  --width: 180;
+
+  --lightness: 100;
+
+  --rise: 0;
+}
+
+.wave {
+  height: calc(var(--height, 0) * 1.5vh);
+  width: calc(var(--width, 0) * 1vw);
+  -webkit-animation: rise calc(var(--speed, 0) * 1.5s) infinite linear;
+  animation: rise calc(var(--speed, 0) * 1.5s) infinite linear;
+}
+
+@media (max-width: 480px) {
+  .wave {
+    height: calc(var(--height, 0) * 0.75vh);
+  }
+}
+.wave path {
+  fill: rgba($color: red, $alpha: calc(var(--lightness, 0) * 0.7%));
+}
+.wave:nth-of-type(2) path {
+  fill: rgba($color: green, $alpha: calc(var(--lightness, 0) * 0.7%));
+}
+.wave path {
+  // fill: hsl(0, 0%, calc(var(--lightness, 0) * 1%));
+  fill: rgba($color: lightslategray, $alpha: calc(var(--lightness, 0) * 0.7%));
+
+  -webkit-animation: wave calc(var(--speed, 0) * 1s) infinite linear;
+
+  animation: wave calc(var(--speed, 0) * 0.8s) infinite linear;
+}
+
+@-webkit-keyframes wave {
+  to {
+    -webkit-transform: translate(-761px, 0);
+
+    transform: translate(-761px, 0);
+  }
+}
+
+@keyframes wave {
+  to {
+    -webkit-transform: translate(-761px, 0);
+
+    transform: translate(-761px, 0);
+  }
+}
+
+@-webkit-keyframes rise {
+  50% {
+    -webkit-transform: translate(0, calc(var(--rise) * -1%));
+
+    transform: translate(0, calc(var(--rise) * -1%));
+  }
+}
+
+@keyframes rise {
+  50% {
+    -webkit-transform: translate(0, calc(var(--rise) * -1%));
+
+    transform: translate(0, calc(var(--rise) * -1%));
+  }
+}
+</style>

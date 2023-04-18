@@ -1,6 +1,7 @@
 <template>
   <!-- 角落页面 -->
   <div class="classify">
+    <div style="height: 50px; background-color: transparent"></div>
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
@@ -27,6 +28,8 @@ import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 import '@/request/api/types'
+import './gitalk/gitalk.css'
+import Gitalk from './gitalk/gitalk.min.js'
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
   if (store.state.isMobile) {
@@ -44,7 +47,6 @@ const checkWidth = () => {
   }
 }
 
-//@ts-ignore
 const gitalk = new Gitalk({
   clientID: 'f23a3794037ee7e92a46',
   clientSecret: '85fabb1fefc584abd420b2d16d27f2bb14f8956d',

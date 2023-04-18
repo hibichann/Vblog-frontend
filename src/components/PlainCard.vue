@@ -98,7 +98,7 @@ const handleClick = (name, query?) => {
   })
 }
 const toArticleDetail = (id) => {
-  router.push({ name: 'articleDetail', query: { id } })
+  router.push({ name: 'articleDetail', params: { id } })
 }
 </script>
 

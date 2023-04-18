@@ -6,7 +6,7 @@
       class="left-body"
       @click="toArticleDetail"
     >
-      <img src="https://blog.chevereto.com/photos/2022/pexels-prakash-aryal-38326.jpg" />
+      <img :src="imgUrl || backImg" />
     </div>
     <div class="right-body">
       <div class="article-body">
@@ -31,7 +31,7 @@
         </div>
         <div
           class="detail"
-          v-html="marked(article?.content.toString())"
+          v-html="marked(article?.content)"
         ></div>
       </div>
     </div>
@@ -39,6 +39,8 @@
 </template>
 
 <script lang="ts" setup>
+//@ts-ignore
+import backImg from '@/assets/thinking.png'
 import { onMounted, ref } from 'vue'
 import { marked } from 'marked'
 import router from '@/router'
@@ -55,12 +57,22 @@ const handleClick = (name, query?) => {
     query
   })
 }
+let imgUrl = ref('')
+const getImgUrl = () => {
+  const regex = /!\[.*\]\((.*?)\)/g
+  let match
+  while ((match = regex.exec(article.value!.content))) {
+    imgUrl.value = match[1]
+    console.log('Found image URL:', imgUrl.value)
+  }
+}
 const article = ref(props.article)
 const toArticleDetail = () => {
   console.log(123, article.value!.id)
-  router.push({ name: 'articleDetail', query: { id: article.value!.id || 1 } })
+  router.push({ name: 'articleDetail', params: { id: article.value!.id || 1 } })
 }
 onMounted(async () => {
+  getImgUrl()
   // article?.value = (await getarticle?({ id: props.id || 1 })) as any
 })
 </script>
@@ -82,6 +94,7 @@ onMounted(async () => {
     overflow: hidden;
     img {
       width: 100%;
+      filter: brightness(0.95);
       // height: 150px;
       object-fit: cover;
       transition: all 0.5s;
@@ -89,6 +102,7 @@ onMounted(async () => {
     img:hover {
       object-fit: cover;
       cursor: pointer;
+      filter: brightness(1);
       transform: scale(1.2);
       transition: all 0.5s;
     }
@@ -147,6 +161,9 @@ onMounted(async () => {
         transition: color 0.3s;
       }
       .detail {
+        :deep(img) {
+          display: none;
+        }
         position: relative;
         // white-space: pre;
         width: 100%;
