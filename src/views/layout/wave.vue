@@ -97,11 +97,11 @@
 
 <style lang="scss" scoped>
 .body {
-  height: 250px;
+  height: 150px;
   display: -webkit-box;
   display: flex;
   position: relative;
-  top: -250px;
+  top: -150px;
   z-index: 9;
   -webkit-box-align: center;
   align-items: center;
@@ -141,7 +141,7 @@
 
   --opacity: 0.3;
 
-  --height: 12;
+  --height: 8;
 
   --width: 320;
 
@@ -154,7 +154,7 @@
 
   --opacity: 0.6;
 
-  --height: 10;
+  --height: 6;
 
   --width: 200;
 
@@ -167,7 +167,7 @@
 
   --opacity: 1;
 
-  --height: 6;
+  --height: 3;
 
   --width: 180;
 
@@ -189,14 +189,8 @@
   }
 }
 .wave path {
-  fill: rgba($color: red, $alpha: calc(var(--lightness, 0) * 0.7%));
-}
-.wave:nth-of-type(2) path {
-  fill: rgba($color: green, $alpha: calc(var(--lightness, 0) * 0.7%));
-}
-.wave path {
   // fill: hsl(0, 0%, calc(var(--lightness, 0) * 1%));
-  fill: rgba($color: lightslategray, $alpha: calc(var(--lightness, 0) * 0.7%));
+  fill: rgba($color: rgb(27, 151, 145), $alpha: calc(var(--lightness, 0) * 0.7%));
 
   -webkit-animation: wave calc(var(--speed, 0) * 1s) infinite linear;
 

@@ -1,9 +1,9 @@
 /* element plus UI重置 */
-
+/* menu */
 .el-menu {
   overflow: hidden;
   width: 100%;
-  border-right: unset;
+  border-right: unset !important;
   font-size: 16px !important;
   background-color: transparent !important;
 }
@@ -12,18 +12,18 @@
   text-align: left !important;
   height: 50px !important;
   font-weight: bold !important;
-  font-size: 16px;
+  font-size: 16px !important;
   position: relative;
   left: 0px;
   transition: all 0.5s;
-  color: #f1c42d;
+  color: #f1c42d !important;
   border: none !important;
 }
 
 .el-menu-item:hover {
   font-weight: bold !important;
   transition: all 0.5s;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent !important;
 }
 
 .is-active {
@@ -83,10 +83,62 @@
   padding: 0 20px !important;
   font-size: 18px !important;
   background-color: transparent !important;
-  color: #ff5100;
+  color: #ff5100 !important;
   font-weight: 700;
 }
-
+/* message */
 .el-message {
   z-index: 999;
+}
+/*tabs  */
+.el-tabs__item {
+  font-size: large !important;
+  height: 60px !important;
+  line-height: 60px !important;
+  font-weight: bolder !important;
+  transition-property: all;
+  color: rgb(35, 252, 198) !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  border-radius: 10px 0 0 10px;
+}
+.el-tabs__item:hover {
+  background-color: rgb(255, 255, 255) !important;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  color: black !important;
+}
+.el-tabs__active-bar {
+  width: 15px !important;
+  height: 15px !important;
+  top: 23px !important;
+  right: 85% !important;
+  border-radius: 15px !important;
+  background-color: yellow !important ;
+}
+/* dialog */
+.el-dialog {
+  border-radius: 30px;
+}
+.el-dialog div:first-child {
+  margin-bottom: 10px;
+}
+.el-dialog__body {
+  padding: 5vw !important;
+  padding-top: 0px !important;
+}
+
+.el-dialog__body input {
+  transition: all 0.5s;
+  border-bottom: 3px solid;
+  width: 100%;
+  height: 40px;
+  font-size: 24px;
+  margin-bottom: 10px;
+  line-height: 40px;
+}
+.el-dialog__body input:focus {
+  outline: none;
+  border-bottom: 3px solid;
 }

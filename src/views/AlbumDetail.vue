@@ -34,7 +34,6 @@
 
 <script lang="ts" name="" setup>
 import PlainCardVue from '@/components/PlainCard.vue'
-import { ElRow, ElCol } from 'element-plus'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import store from '@/store'
 const spanWidth = ref([2, 13, 1, 6, 2])

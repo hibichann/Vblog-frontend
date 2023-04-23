@@ -45,7 +45,7 @@
     >
       <input
         disabled
-        class="block text-center cursor-pointer appearance-none placeholder-white placeholder-opacity-80 border border-gray-400 rounded-md w-full h-full text-white leading-5 focus:outline-none focus:ring-2 focus:ring-gray-200"
+        class="block text-center cursor-pointer appearance-none placeholder-white placeholder-opacity-80 border-2 border-gray-400 rounded-md w-full h-full text-white leading-5 focus:outline-none focus:ring-2 focus:ring-gray-200"
         :value="searchValue"
         placeholder="Tap to search"
       />
@@ -182,32 +182,9 @@ const scroll1 = () => {
 </script>
 
 <style lang="scss" scoped>
-:deep(.el-dialog) {
-  border-radius: 30px;
-  div:first-child {
-    margin-bottom: 10px;
-  }
-}
-:deep(.el-dialog__body) {
-  padding: 5vw;
-  padding-top: 0px;
-  input {
-    transition: all 0.5s;
-    border-bottom: 2px solid;
-    width: 100%;
-    height: 40px;
-    font-size: 24px;
-    margin-bottom: 10px;
-    line-height: 40px;
-  }
-  input:focus {
-    outline: none;
-    border-bottom: 2px solid;
-  }
-}
 .beforeSearch {
   position: absolute;
-  left: 10%;
+  left: 5vw;
   top: 70vh;
   z-index: 9;
   text-shadow: 4px 4px 8px #000000;
@@ -221,7 +198,7 @@ const scroll1 = () => {
   z-index: 9;
   transform: translate(-50%);
   left: 50%;
-  top: 58vh;
+  top: 60vh;
   transition: all 1s;
   input {
     background: rgba(0, 0, 0, 0.5);
@@ -235,7 +212,10 @@ const scroll1 = () => {
   z-index: 9;
   transform: translate(-50%);
   left: 50%;
-  top: 63vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 75vh;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
   animation: trans 2s ease-out infinite alternate;
   @keyframes trans {
@@ -252,7 +232,7 @@ img {
   height: 1296px;
   position: relative;
   object-fit: cover;
-  transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
+  transition: all 0.5s ease-in;
 }
 .imgTouch {
   position: relative;
@@ -269,10 +249,6 @@ img {
   text-align: center;
   vertical-align: middle;
   // background-color: rgb(105, 99, 82);
-  img {
-    transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
-    margin: 0 auto;
-  }
 }
 .imgspan .imgspan2::before {
   content: '·';
@@ -285,25 +261,26 @@ img {
   font-size: 200px;
   font-weight: bolder;
   position: absolute;
+  text-shadow: 4px 4px 10px #000000;
   color: rgb(255, 255, 255);
   transform: translate(-50%);
   top: 20vh;
   left: 50%;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
-  transition: color 1s, font-size 1s cubic-bezier(0.04, 0.94, 0.81, 1);
-  animation: spanmove ease-out 2s 1;
+  // transition: color 1s, font-size 1s cubic-bezier(0.04, 0.94, 0.81, 1);
+  animation: spanmove ease-in 1.5s 1;
   @keyframes spanmove {
     0% {
       font-size: 100px;
       color: transparent;
-      left: 40%;
+      left: 45%;
     }
-    50% {
+    67% {
       font-size: 100px;
       color: transparent;
       left: 50%;
     }
-    70% {
+    83% {
       font-size: 100px;
       color: transparent;
       left: 50%;

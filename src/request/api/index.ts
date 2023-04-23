@@ -47,6 +47,14 @@ export function getArticle (params:{id:number}) {
     params
   })
 }
+//文章获取tag
+export function getTag (params:{id:number}) {
+  return service({
+    url: '/getTag',
+    method: 'get',
+    params
+  })
+}
 //获取全部tag
 export function getAllTags () {
   return service<allTags>({

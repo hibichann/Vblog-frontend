@@ -1,75 +1,56 @@
 <template>
-  <!-- 文章列表页 -->
-  <div class="Home">
-    <!-- <div style="height: 50px; background-color: transparent"></div> -->
-    <div class="shadow"></div>
-    <el-row>
-      <el-col :span="spanWidth[0]"></el-col>
-      <el-col :span="spanWidth[1]">
-        <div class="left-body">
-          <div
-            class="title"
-            v-if="title"
-          >
-            {{ '&nbsp;&nbsp;&nbsp;' + title }}
-          </div>
-          <div v-if="list.content !== undefined">
-            <CardMDVue
-              v-for="i in list.content"
-              :article="i"
-              :key="i"
-            ></CardMDVue>
-          </div>
-          <div class="text-center">
-            <div
-              class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer hover:text-lg hover:leading-6"
-              v-if="props.type === 'home'"
-              @click="handleClick('archive')"
-            >
-              {{ $t('meg.seemore') }}
-            </div>
-            <div
-              v-else
-              class="flex justify-between"
-            >
-              <div
-                v-show="page !== 1"
-                @click="handleClick2('up')"
-                class="flex-1 transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
-              >
-                {{ $t('meg.up') }}
-              </div>
-              <div
-                class="flex-1"
-                v-show="page === 1"
-              ></div>
-              <div
-                v-show="list.total - page * 10 > 0"
-                @click="handleClick2('down')"
-                class="flex-1 transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
-              >
-                {{ $t('meg.down') }}
-              </div>
-            </div>
-          </div>
+  <page-frame :color="'transparent'">
+    <div
+      class="title"
+      v-if="title"
+    >
+      {{ '&nbsp;&nbsp;&nbsp;' + title }}
+    </div>
+    <div v-if="list.content !== undefined">
+      <CardMDVue
+        v-for="i in list.content"
+        :article="i"
+        :key="i"
+      ></CardMDVue>
+    </div>
+    <div class="text-center">
+      <div
+        class="transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer hover:text-lg hover:leading-6"
+        v-if="props.type === 'home'"
+        @click="handleClick('archive')"
+      >
+        {{ $t('meg.seemore') }}
+      </div>
+      <div
+        v-else
+        class="flex justify-between"
+      >
+        <div
+          v-show="page !== 1"
+          @click="handleClick2('up')"
+          class="flex-1 transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
+        >
+          {{ $t('meg.up') }}
         </div>
-      </el-col>
-      <el-col :span="spanWidth[2]"></el-col>
-      <el-col :span="spanWidth[3]">
-        <div class="right-body">
-          <div class="card-content">
-            <PlainCardVue></PlainCardVue>
-          </div></div
-      ></el-col>
-      <el-col :span="spanWidth[4]"></el-col>
-    </el-row>
-  </div>
+        <div
+          class="flex-1"
+          v-show="page === 1"
+        ></div>
+        <div
+          v-show="list.total - page * 10 > 0"
+          @click="handleClick2('down')"
+          class="flex-1 transition-all text-white text-base h-20px leading-6 text-center px-2 py-1 m-10 border-solid border-2 inline-block cursor-pointer"
+        >
+          {{ $t('meg.down') }}
+        </div>
+      </div>
+    </div></page-frame
+  >
 </template>
-<script lang="ts" setup>
-import PlainCardVue from '@/components/PlainCard.vue'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+
+<script lang="ts" name="" setup>
+import { onMounted, ref } from 'vue'
 import CardMDVue from './CardMD.vue'
-import store from '@/store'
 import '@/request/api/types'
 import { getBlogByPage, getBlogByTag } from '@/request/api'
 import router from '@/router'
@@ -91,24 +72,6 @@ const props = defineProps({
   }
 })
 const title = ref<string>('')
-const spanWidth = ref([2, 13, 1, 6, 2])
-const checkWidth = () => {
-  //低于= 1080p不显示右侧栏
-  //@ts-ignore
-  if (store.state.isMobile) {
-    spanWidth.value[0] = 1
-    spanWidth.value[1] = 22
-    spanWidth.value[2] = 0
-    spanWidth.value[3] = 0
-    spanWidth.value[4] = 1
-  } else {
-    spanWidth.value[0] = 2
-    spanWidth.value[1] = 13
-    spanWidth.value[2] = 1
-    spanWidth.value[3] = 6
-    spanWidth.value[4] = 2
-  }
-}
 const page = ref(1)
 const list = ref<any>({})
 const handleList = async (page) => {
@@ -141,48 +104,19 @@ const handleClick2 = (text) => {
 }
 onMounted(() => {
   title.value = props.title
-  checkWidth()
   handleList(page.value)
 })
 </script>
+
 <style lang="scss" scoped>
-.shadow {
-  width: 100%;
-  box-shadow: 0 0 20px 20px lightslategray;
-}
 .title {
   width: 30%;
   color: rgb(97, 97, 97);
   display: inline-block;
-  background-color: #e5e0ff;
+  background-color: #ffffff;
   font-size: 18px;
   line-height: 40px;
-  border-left: #001e817e solid 5px;
-}
-.Home {
-  background-image: url('../../public/img/bg0.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-.left-body {
-  background-color: transparent;
-  margin: 50px 0;
-  border-radius: 10px;
-  padding: 30px 50px;
-  backdrop-filter: blur(5px) brightness(40%);
-}
-.left {
-  width: 100%;
-  height: 100%;
-}
-.right-body {
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
-  // padding: 20px;
-  // border-radius: 10px;
-  // box-shadow: 0 0 2px 2px rgba(187, 187, 187, 0.507);
-  text-align: left;
+  border-left: #00e2c47e solid 40px;
+  border-radius: 10px 5px 5px 10px;
 }
 </style>

@@ -1,43 +1,33 @@
 <template>
-  <!-- 文章详情页面 -->
-  <div class="classify">
-    <div style="height: 50px; background-color: transparent"></div>
-    <el-row>
-      <el-col :span="spanWidth[0]"></el-col>
-      <el-col :span="spanWidth[1]">
-        <div class="left-body">
-          <div class="left">
-            <div class="title">
-              <span class="spanTitle">{{ article.title }}</span>
-              <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
-              <div><el-tag>123</el-tag></div>
-            </div>
-            <div
-              class="markdown-body pb-24"
-              v-highlight
-              v-html="marked(article.content.toString())"
-            ></div>
-            <div id="gitalk-container"></div>
-            <div class="h-10"></div>
-          </div>
+  <page-frame :color="'white'">
+    <div>
+      <div class="title">
+        <span class="spanTitle">{{ article.title }}</span>
+        <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
+        <div>
+          <el-tag
+            v-for="i in tags"
+            class="mx-2 cursor-pointer"
+            :type="typeArr[Math.floor(Math.random() * typeArr.length)]"
+            >{{ i.tag_name }}</el-tag
+          >
         </div>
-      </el-col>
-      <el-col :span="spanWidth[2]"></el-col>
-      <el-col :span="spanWidth[3]">
-        <div class="right-body">
-          <div class="card-content"><PlainCardVue></PlainCardVue></div></div
-      ></el-col>
-      <el-col :span="spanWidth[4]"></el-col>
-    </el-row>
-  </div>
+      </div>
+    </div>
+    <div
+      class="markdown-body pb-24"
+      v-highlight
+      v-html="marked(article.content.toString())"
+    ></div>
+    <div id="gitalk-container"></div>
+    <div class="h-10"></div>
+  </page-frame>
 </template>
-<script lang="ts" setup>
-import PlainCardVue from '@/components/PlainCard.vue'
-import { getArticle } from '@/request/api'
+
+<script lang="ts" name="" setup>
+import { getArticle, getTag } from '@/request/api'
 import { marked } from 'marked'
-import { ElRow, ElCol } from 'element-plus'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import store from '@/store'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import './gitalk/gitalk.css'
 import Gitalk from './gitalk/gitalk.min.js'
@@ -61,79 +51,33 @@ const gitalk = new Gitalk({
   language: window.localStorage.getItem('lang') === 'cn' ? 'zh-CN' : 'en'
 })
 const route = useRoute()
+const tags = ref<allTags>([])
+const typeArr = ref(['', 'success', 'info', 'warning', 'danger'])
 onMounted(async () => {
   article.value = (await getArticle({ id: route.params.id! as unknown as number })) as any
-})
-const spanWidth = ref([2, 13, 1, 6, 2])
-const checkWidth = () => {
-  //低于= 1080p不显示右侧栏
-  //@ts-ignore
-  if (store.state.isMobile) {
-    spanWidth.value[0] = 1
-    spanWidth.value[1] = 22
-    spanWidth.value[2] = 0
-    spanWidth.value[3] = 0
-    spanWidth.value[4] = 1
-  } else {
-    spanWidth.value[0] = 2
-    spanWidth.value[1] = 13
-    spanWidth.value[2] = 1
-    spanWidth.value[3] = 6
-    spanWidth.value[4] = 2
-  }
-}
-onMounted(() => {
-  checkWidth()
   gitalk.render('gitalk-container')
+  tags.value = await getTag({ id: route.params.id! as unknown as number })
 })
 </script>
+
 <style lang="scss" scoped>
-.classify {
-  background-image: url('../../public/img/bg0.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-.left-body {
-  background-color: transparent;
-  margin: 50px 0;
-  border-radius: 10px;
-  backdrop-filter: blur(5px) brightness(40%);
-}
-.left {
-  // display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  min-height: 50px;
-  border-radius: 10px;
-  .title {
-    padding-top: 50px;
-    display: flex;
-    // width: 100%;
-    flex-direction: column;
-    align-items: center;
-    .spanTitle {
-      // display: block;
-      font-size: 30px;
-      margin-bottom: 20px;
-    }
-    .spanTime {
-      font-size: 16px;
-      color: rgb(73, 73, 73);
-    }
+.title {
+  padding-top: 50px;
+  display: flex;
+  // width: 100%;
+  flex-direction: column;
+  align-items: center;
+  .spanTitle {
+    // display: block;
+    font-size: 30px;
+    margin-bottom: 20px;
   }
-  div {
-    margin: 20px 50px;
+  .spanTime {
+    font-size: 16px;
+    color: rgb(73, 73, 73);
   }
 }
-.right-body {
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
-  // padding: 20px;
-  // border-radius: 10px;
-  // box-shadow: 0 0 2px 2px rgba(187, 187, 187, 0.507);
-  text-align: left;
+.left div {
+  margin: 20px 50px;
 }
 </style>

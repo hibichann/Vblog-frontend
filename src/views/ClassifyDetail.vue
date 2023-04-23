@@ -24,29 +24,4 @@ onBeforeUnmount(() => {
   store.commit('switchHighlight', 0)
 })
 </script>
-<style lang="scss" scoped>
-.classify {
-  background-image: url('../../public/img/bg0.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-.left-body {
-  background-color: transparent;
-  margin: 50px 0;
-  border-radius: 10px;
-  padding: 30px 50px;
-  backdrop-filter: blur(5px) brightness(40%);
-}
-.left {
-  width: 100%;
-  height: 100%;
-  color: white;
-}
-.right-body {
-  width: 100%;
-  height: 100%;
-  margin-top: 50px;
-  text-align: left;
-}
-</style>
+<style lang="scss" scoped></style>

@@ -6,7 +6,15 @@
       class="left-body"
       @click="toArticleDetail"
     >
-      <img :src="imgUrl || backImg" />
+      <img
+        :src="imgUrl"
+        v-if="imgUrl"
+      />
+      <span
+        v-else
+        class="span2"
+        >Nothing</span
+      >
     </div>
     <div class="right-body">
       <div class="article-body">
@@ -40,7 +48,7 @@
 
 <script lang="ts" setup>
 //@ts-ignore
-import backImg from '@/assets/thinking.png'
+import backImg from '@/assets/thinking.jpg'
 import { onMounted, ref } from 'vue'
 import { marked } from 'marked'
 import router from '@/router'
@@ -79,7 +87,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .card-body {
   margin-top: 2vh;
-  height: 150px;
+  height: 180px;
   width: 100%;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -90,8 +98,17 @@ onMounted(async () => {
     width: 40%;
     display: flex;
     justify-content: space-around;
-    background-color: rgb(141, 25, 25);
+    background-color: #0093e9;
+    background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
     overflow: hidden;
+    cursor: pointer;
+    .span2 {
+      color: white;
+      font-size: 40px;
+      text-shadow: 2px 2px 2px #000000;
+      line-height: 180px;
+      user-select: none;
+    }
     img {
       width: 100%;
       filter: brightness(0.95);
@@ -110,35 +127,39 @@ onMounted(async () => {
   .right-body {
     width: 60%;
     z-index: 99;
-    background-color: rgb(255, 255, 255);
+    // background-color: rgb(255, 255, 255);
+    background-image: url('../assets/bg1.png');
+    background-size: cover;
     display: flex;
     justify-content: space-around;
     .article-body {
       // margin-top: 10px;
-      background-color: rgb(255, 255, 255);
+      backdrop-filter: blur(0px) brightness(90%);
+      padding: 15px;
       width: 100%;
-      height: 150px;
+      height: 180px;
       .title {
         position: relative;
-        padding: 0 10px;
+        padding: 10px 20px;
         display: block;
         text-align: left;
         height: 40px;
-        top: 10px;
-        left: 10px;
-        color: black;
+        // top: 10px;
+        // left: 10px;
+        color: white;
         font-size: 20px;
         font-weight: 500;
         transition: color 0.3s;
-        color: black;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-shadow: 2px 2px 4px #000;
       }
       .title:hover {
-        color: rgb(70, 188, 194);
+        color: rgb(76, 211, 216);
         cursor: pointer;
-        transition: color 0.3s;
+        text-shadow: -1px -1px 4px #000;
+        transition: all 0.2s;
       }
       .about {
         display: flex;
@@ -146,17 +167,17 @@ onMounted(async () => {
         div {
           margin-left: 10px;
           font-size: 14px;
-          color: rgb(90, 90, 90);
+          color: rgb(90, 255, 247);
         }
       }
       .about div + div {
-        color: rgb(90, 90, 90);
+        color: rgb(90, 255, 247);
         cursor: pointer;
         transition: color 0.3s;
       }
 
       .about div + div:hover {
-        color: rgb(53, 137, 141);
+        color: rgb(255, 255, 255);
         cursor: pointer;
         transition: color 0.3s;
       }
@@ -173,6 +194,8 @@ onMounted(async () => {
         font-size: 16px;
         line-height: 20px;
         font-weight: 500;
+        color: #fff;
+        text-shadow: 2px 2px 4px #000;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;

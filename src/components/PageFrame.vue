@@ -1,18 +1,23 @@
 <template>
-  <!-- 相册列表 -->
+  <!-- 文章详情页面 -->
   <div class="classify">
+    <div class="shadow"></div>
     <div style="height: 50px; background-color: transparent"></div>
     <el-row>
       <el-col :span="spanWidth[0]"></el-col>
       <el-col :span="spanWidth[1]">
-        <div class="left-body">
+        <div
+          class="left-body"
+          :style="{ backgroundColor: props.color }"
+        >
           <div
             class="left"
-            @click="goDetail()"
+            :style="{ backgroundColor: props.color }"
           >
-            <album-left></album-left>
-          </div></div
-      ></el-col>
+            <slot></slot>
+          </div>
+        </div>
+      </el-col>
       <el-col :span="spanWidth[2]"></el-col>
       <el-col :span="spanWidth[3]">
         <div class="right-body">
@@ -24,11 +29,9 @@
 </template>
 <script lang="ts" setup>
 import PlainCardVue from '@/components/PlainCard.vue'
-
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import AlbumLeft from '@/components/AlbumLeft.vue'
+import { onMounted, ref } from 'vue'
 import store from '@/store'
-import router from '@/router'
+const props = defineProps(['color'])
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
   //低于= 1080p不显示右侧栏
@@ -47,16 +50,15 @@ const checkWidth = () => {
     spanWidth.value[4] = 2
   }
 }
-const goDetail = () => {
-  router.push({
-    name: 'albumDetail'
-  })
-}
-onMounted(() => {
+onMounted(async () => {
   checkWidth()
 })
 </script>
 <style lang="scss" scoped>
+.shadow {
+  width: 100%;
+  box-shadow: 0 0 80px 80px rgb(0, 69, 107);
+}
 .classify {
   background-image: url('../../public/img/bg0.png');
   background-repeat: no-repeat;
@@ -71,9 +73,15 @@ onMounted(() => {
   backdrop-filter: blur(5px) brightness(40%);
 }
 .left {
+  // display: flex;
   width: 100%;
   height: 100%;
-  color: white;
+  background-color: transparent;
+  min-height: 50px;
+  border-radius: 10px;
+  div {
+    margin: 20px 50px;
+  }
 }
 .right-body {
   width: 100%;

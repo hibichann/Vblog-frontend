@@ -18,8 +18,6 @@
 import { nextTick, onMounted, ref } from 'vue'
 import menuItem from '@/components/MenuItem.vue'
 import { getCateTree } from '@/request/api'
-import { ElMenu } from 'element-plus'
-// import store from '@/store'
 const props = defineProps({
   demo: {
     type: String,
