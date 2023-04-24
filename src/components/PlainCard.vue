@@ -58,20 +58,12 @@
         </div>
         <div class="tags">
           <span
-            v-for="i in card2"
-            :key="i.tag_id"
+            v-for="i in tags"
             @click="handleClick('classifyDetail', { id: i.tag_id, menuName: i.tag_name, type: 'tag' })"
+            class="m-1 px-2 py-1 rounded cursor-pointer text-white"
             >{{ i.tag_name }}</span
           >
         </div>
-      </div>
-    </div>
-    <div class="third">
-      <div class="content">
-        <div class="category">
-          <i class="fa fa-puzzle-piece"></i><span>&nbsp;&nbsp;{{ $t('meg.category') }}</span>
-        </div>
-        <div><CateMenuVue></CateMenuVue></div>
       </div>
     </div>
   </div>
@@ -84,11 +76,11 @@ import '@/request/api/types'
 import router from '@/router'
 import { onMounted, ref } from 'vue'
 const card1 = ref<card1 | null>(null)
-const card2 = ref<allTags | null>(null)
+const tags = ref<allTags | null>(null)
 const card4 = ref<any | null>(null)
 onMounted(async () => {
   card1.value = await getCard1()
-  card2.value = await getAllTags()
+  tags.value = await getAllTags()
   card4.value = await getCard4()
 })
 const handleClick = (name, query?) => {
@@ -175,14 +167,19 @@ const toArticleDetail = (id) => {
   }
   .tags {
     span {
-      color: rgb(48, 48, 48);
       display: inline-block;
       font-size: 16px;
-      padding: 8px;
+      box-shadow: 0 0 3px #888;
+      background: linear-gradient(to right, #df4c9f 0%, #784ba0 50%, #2b86c5 100%);
+      background-size: 200%;
+      transition: all ease-in 0.2s;
     }
     span:hover {
-      color: rgb(148, 148, 148);
+      color: rgb(255, 255, 255);
       cursor: pointer;
+      box-shadow: -2px -2px 3px #888;
+      background-position: 100% 0;
+      transition: all ease-in 0.2s;
     }
   }
 }

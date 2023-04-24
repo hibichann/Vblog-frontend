@@ -58,10 +58,9 @@ onMounted(async () => {
           }
         },
         emphasis: {
-          focus: 'self',
           textStyle: {
-            textShadowBlur: 5,
-            textShadowColor: '#333'
+            textShadowBlur: 15,
+            textShadowColor: '#aaa'
           }
         },
         data: data.value

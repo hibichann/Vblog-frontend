@@ -3,13 +3,13 @@
     <div>
       <div class="title">
         <span class="spanTitle">{{ article.title }}</span>
-        <span class="spanTime">发表于：{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}|编辑于：{{ dayjs(article.date).format('YYYY-MM-DD hh:mm:ss') }}</span>
+        <span class="spanTime">{{ dayjs(article.createdate).format('YYYY-MM-DD hh:mm:ss') }}</span>
         <div>
-          <el-tag
+          <span
             v-for="i in tags"
-            class="mx-2 cursor-pointer"
-            :type="typeArr[Math.floor(Math.random() * typeArr.length)]"
-            >{{ i.tag_name }}</el-tag
+            style="background-color: #ff3cac; background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%)"
+            class="mx-1 px-2 py-1 rounded cursor-pointer text-white"
+            >{{ i.tag_name }}</span
           >
         </div>
       </div>
@@ -75,6 +75,21 @@ onMounted(async () => {
   .spanTime {
     font-size: 16px;
     color: rgb(73, 73, 73);
+  }
+  div span {
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 0 3px #888;
+    background: linear-gradient(to right, #df4c9f 0%, #784ba0 50%, #2b86c5 100%);
+    background-size: 200%;
+    transition: all ease-in 0.2s;
+  }
+  div span:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    box-shadow: -2px -2px 3px #888;
+    background-position: 100% 0;
+    transition: all ease-in 0.2s;
   }
 }
 .left div {

@@ -1,5 +1,5 @@
 <template>
-  <page-frame :color="'white'">
+  <page-frame :image="'linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)'">
     <div class="mx-3 py-5 text-lg"><i class="fa fa-puzzle-piece"></i>&nbsp;{{ $t('meg.tags') }}</div>
     <div class="tags mx-5 pb-5">
       <word></word>

@@ -8,11 +8,11 @@
       <el-col :span="spanWidth[1]">
         <div
           class="left-body"
-          :style="{ backgroundColor: props.color }"
+          :style="{ backgroundColor: props.color, backgroundImage: props.image }"
         >
           <div
             class="left"
-            :style="{ backgroundColor: props.color }"
+            :style="{ backgroundColor: props.color, backgroundImage: props.image }"
           >
             <slot></slot>
           </div>
@@ -31,7 +31,7 @@
 import PlainCardVue from '@/components/PlainCard.vue'
 import { onMounted, ref } from 'vue'
 import store from '@/store'
-const props = defineProps(['color'])
+const props = defineProps(['color', 'image'])
 const spanWidth = ref([2, 13, 1, 6, 2])
 const checkWidth = () => {
   //低于= 1080p不显示右侧栏

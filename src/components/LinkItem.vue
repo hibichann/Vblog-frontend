@@ -1,15 +1,66 @@
 <template>
-  <div class="body"></div>
+  <div
+    class="body"
+    @click="Go"
+  >
+    <div class="left">
+      <img :src="props.pfp" />
+    </div>
+    <div class="right">
+      <span>{{ props.title }}</span>
+      <br />
+      <span>{{ props.word }}</span>
+    </div>
+  </div>
 </template>
 
-<script lang="ts" name="" setup></script>
-
+<script lang="ts" name="" setup>
+const props = defineProps(['pfp', 'title', 'link', 'word'])
+const Go = () => {
+  window.open(props.link, '_blank')
+}
+</script>
 <style lang="scss" scoped>
 .body {
-  height: 50px;
-  width: 250px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 8px;
+  text-align: center;
+  justify-content: center;
+  height: 80px;
+  width: 260px;
   margin: 10px;
-  border: 2px solid red;
-  background-color: #999;
+  box-shadow: 2px 2px 10px 2px #888;
+  display: grid;
+  grid-template-columns: 80px 180px;
+  transition: all ease-in 0.2s;
+  color: #fff;
+  img {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px 2px #888;
+  }
+  .left {
+    background-color: #fff;
+    border-radius: 10px 0 0 10px;
+    background-color: #a9c9ff;
+    background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+  }
+  .right {
+    border-radius: 0 10px 10px 0;
+    background-color: #faaca8;
+    background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+
+    :first-child {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+}
+.body:hover {
+  box-shadow: -2px -2px 10px 2px #888;
+  transition: all ease-in 0.2s;
 }
 </style>

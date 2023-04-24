@@ -21,3 +21,10 @@ type card1 ={
     cate: number
     tag: number
 }
+type linkItem={
+    pfp?:string,
+    link?:string,
+    title?:string,
+    word?:string
+}
+type linkList=linkItem[]

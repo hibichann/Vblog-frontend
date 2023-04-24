@@ -111,12 +111,12 @@ onMounted(() => {
 <style lang="scss" scoped>
 .title {
   width: 30%;
-  color: rgb(97, 97, 97);
+  color: rgb(255, 255, 255);
   display: inline-block;
-  background-color: #ffffff;
+  background-color: #fbda61;
+  background-image: linear-gradient(60deg, #ff5acd 0%, #fbda61 100%);
   font-size: 18px;
-  line-height: 40px;
-  border-left: #00e2c47e solid 40px;
-  border-radius: 10px 5px 5px 10px;
+  line-height: 45px;
+  border-radius: 10px;
 }
 </style>

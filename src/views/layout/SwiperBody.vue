@@ -27,10 +27,10 @@
       >
         <div :class="'imgbox ' + i">
           <div class="imgbox">
-            <img
+            <!-- <img
               :class="imgClass2"
               :src="'/img/bg' + (index + 1) + '.png'"
-            />
+            /> -->
             <span class="imgspan2">{{ spanText[index] }}</span>
           </div>
         </div>
@@ -191,7 +191,7 @@ const scroll1 = () => {
 }
 .search {
   height: 50px;
-  width: 300px;
+  width: 200px;
   border-radius: 10px;
   background-color: transparent;
   position: absolute;
@@ -199,15 +199,21 @@ const scroll1 = () => {
   transform: translate(-50%);
   left: 50%;
   top: 60vh;
-  transition: all 1s;
+  transition: all ease-out 0.2s;
   input {
     background: rgba(0, 0, 0, 0.5);
   }
+}
+.search:hover {
+  width: 400px;
+  transition: all ease-out 0.2s;
+  box-shadow: 0 0 10px 5px #ffffff;
 }
 .scrollDown {
   font-size: 150px;
   display: block;
   font-weight: bolder;
+  transition: all ease-out 0.5s;
   position: absolute;
   z-index: 9;
   transform: translate(-50%);
@@ -248,7 +254,6 @@ img {
   backdrop-filter: blur(10px) sepia(60%);
   text-align: center;
   vertical-align: middle;
-  // background-color: rgb(105, 99, 82);
 }
 .imgspan .imgspan2::before {
   content: '·';
@@ -267,20 +272,20 @@ img {
   top: 20vh;
   left: 50%;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
-  // transition: color 1s, font-size 1s cubic-bezier(0.04, 0.94, 0.81, 1);
-  animation: spanmove ease-in 1.5s 1;
+  transition: color 0.5s, font-size 0.5s;
+  animation: spanmove ease-in 2s 1;
   @keyframes spanmove {
     0% {
       font-size: 100px;
       color: transparent;
       left: 45%;
     }
-    67% {
+    33% {
       font-size: 100px;
       color: transparent;
       left: 50%;
     }
-    83% {
+    50% {
       font-size: 100px;
       color: transparent;
       left: 50%;
@@ -302,6 +307,7 @@ img {
   display: block;
   width: 100%;
   height: calc(100vh);
+  background-image: url('../../../public/img/bg1.png');
   // height: 60vh;
 }
 .default {

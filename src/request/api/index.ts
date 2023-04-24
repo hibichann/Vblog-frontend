@@ -84,3 +84,11 @@ export function search (params:{str:string}) {
     params
   })
 }
+
+//link
+export function getLink () {
+  return service<linkList>({
+    url: '/getLink',
+    method: 'get'
+  })
+}

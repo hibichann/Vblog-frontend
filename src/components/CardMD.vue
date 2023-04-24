@@ -30,7 +30,7 @@
               class="fa fa-calendar"
               aria-hidden="true"
             ></i
-            >&nbsp;发表于：{{ dayjs(article?.createdate).format('YYYY-MM-DD') }}
+            >&nbsp;{{ dayjs(article?.createdate).format('YYYY-MM-DD') }}
           </div>
           <div @click="handleClick('classify', { id: article?.class, menuName: article?.typename, type: 'cate' })">
             <i class="fa fa-puzzle-piece"></i>
