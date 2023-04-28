@@ -10,10 +10,7 @@
           class="left-body"
           :style="{ backgroundColor: props.color, backgroundImage: props.image }"
         >
-          <div
-            class="left"
-            :style="{ backgroundColor: props.color, backgroundImage: props.image }"
-          >
+          <div class="left">
             <slot></slot>
           </div>
         </div>
@@ -57,7 +54,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .shadow {
   width: 100%;
-  box-shadow: 0 0 80px 80px rgb(0, 69, 107);
+  box-shadow: 0 0 20px 20px rgba(0, 70, 107, 0.637);
 }
 .classify {
   background-image: url('../../public/img/bg0.png');
@@ -70,7 +67,7 @@ onMounted(async () => {
   margin: 50px 0;
   border-radius: 10px;
   padding: 30px 50px;
-  backdrop-filter: blur(5px) brightness(40%);
+  backdrop-filter: blur(5px) brightness(60%);
 }
 .left {
   // display: flex;
@@ -78,7 +75,7 @@ onMounted(async () => {
   height: 100%;
   background-color: transparent;
   min-height: 50px;
-  border-radius: 10px;
+  // border-radius: 10px;
   div {
     margin: 20px 50px;
   }
@@ -86,10 +83,7 @@ onMounted(async () => {
 .right-body {
   width: 100%;
   height: 100%;
-  margin-top: 50px;
-  // padding: 20px;
-  // border-radius: 10px;
-  // box-shadow: 0 0 2px 2px rgba(187, 187, 187, 0.507);
+  padding-top: 50px;
   text-align: left;
 }
 </style>

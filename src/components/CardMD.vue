@@ -134,7 +134,7 @@ onMounted(async () => {
     justify-content: space-around;
     .article-body {
       // margin-top: 10px;
-      backdrop-filter: blur(0px) brightness(90%);
+      backdrop-filter: blur(5px) brightness(90%);
       padding: 15px;
       width: 100%;
       height: 180px;

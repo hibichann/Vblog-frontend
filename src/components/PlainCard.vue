@@ -30,6 +30,14 @@
         ></a>
       </div>
     </div>
+    <div class="second">
+      <div class="content">
+        <div>
+          <i class="fa fa-tag"></i><span>&nbsp;&nbsp;{{ $t('meg.tags') }}</span>
+        </div>
+        <word></word>
+      </div>
+    </div>
     <div class="fourth">
       <div class="content">
         <div class="category">
@@ -51,36 +59,19 @@
         </div>
       </div>
     </div>
-    <div class="second">
-      <div class="content">
-        <div>
-          <i class="fa fa-tag"></i><span>&nbsp;&nbsp;{{ $t('meg.tags') }}</span>
-        </div>
-        <div class="tags">
-          <span
-            v-for="i in tags"
-            @click="handleClick('classifyDetail', { id: i.tag_id, menuName: i.tag_name, type: 'tag' })"
-            class="m-1 px-2 py-1 rounded cursor-pointer text-white"
-            >{{ i.tag_name }}</span
-          >
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts" name="" setup>
-import CateMenuVue from '@/components/CateMenu.vue'
-import { getAllTags, getCard1, getCard4 } from '@/request/api'
+import word from '@/components/word.vue'
+import { getCard1, getCard4 } from '@/request/api'
 import '@/request/api/types'
 import router from '@/router'
 import { onMounted, ref } from 'vue'
 const card1 = ref<card1 | null>(null)
-const tags = ref<allTags | null>(null)
 const card4 = ref<any | null>(null)
 onMounted(async () => {
   card1.value = await getCard1()
-  tags.value = await getAllTags()
   card4.value = await getCard4()
 })
 const handleClick = (name, query?) => {
@@ -102,7 +93,8 @@ const toArticleDetail = (id) => {
   user-select: none;
   border-radius: 10px;
   margin-bottom: 20px;
-  background-color: rgb(255, 255, 255);
+  // background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(0deg, #edfffd 0%, #ffebeb 100%);
 }
 .first .content {
   display: flex;

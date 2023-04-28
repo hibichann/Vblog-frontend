@@ -2,7 +2,7 @@
   <div>
     <div
       ref="chartDom"
-      style="height: 400px; width: 100%"
+      style="height: 300px; width: 100%"
     ></div>
   </div>
 </template>
@@ -42,7 +42,7 @@ onMounted(async () => {
         height: '100%',
         right: null,
         bottom: null,
-        sizeRange: [20, 40],
+        sizeRange: [16, 32],
         rotationRange: [-30, 15],
         rotationStep: 45,
         gridSize: 8,

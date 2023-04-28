@@ -1,5 +1,5 @@
 <template>
-  <page-frame :color="'white'">
+  <page-frame :image="'linear-gradient(0deg, #edfffd 0%, #ffebeb 100%)'">
     <div>
       <div class="title">
         <span class="spanTitle">{{ article.title }}</span>
@@ -8,7 +8,7 @@
           <span
             v-for="i in tags"
             style="background-color: #ff3cac; background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%)"
-            class="mx-1 px-2 py-1 rounded cursor-pointer text-white"
+            class="mx-1 px-2 py-0.5 rounded cursor-pointer text-white"
             >{{ i.tag_name }}</span
           >
         </div>
@@ -61,6 +61,13 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
+.markdown-body {
+  // background-image: linear-gradient(0deg, #fffced 0%, #ffebeb 100%);
+  background-color: transparent;
+}
+:deep(pre) {
+  background-color: transparent;
+}
 .title {
   padding-top: 50px;
   display: flex;
@@ -78,7 +85,7 @@ onMounted(async () => {
   }
   div span {
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     box-shadow: 0 0 3px #888;
     background: linear-gradient(to right, #df4c9f 0%, #784ba0 50%, #2b86c5 100%);
     background-size: 200%;

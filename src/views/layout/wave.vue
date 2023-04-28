@@ -189,8 +189,7 @@
   }
 }
 .wave path {
-  // fill: hsl(0, 0%, calc(var(--lightness, 0) * 1%));
-  fill: rgba($color: rgb(27, 151, 145), $alpha: calc(var(--lightness, 0) * 0.7%));
+  fill: rgba($color: rgb(255, 175, 238), $alpha: calc(var(--lightness, 0) * 0.7%));
 
   -webkit-animation: wave calc(var(--speed, 0) * 1s) infinite linear;
 

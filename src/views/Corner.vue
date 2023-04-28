@@ -1,5 +1,5 @@
 <template>
-  <page-frame :color="'white'">
+  <page-frame :image="'linear-gradient(0deg, #edfffd 0%, #ffebeb 100%)'">
     <div class="mx-3 py-5 text-lg"><i class="fa fa-link"></i>&nbsp;{{ $t('meg.friend') }}</div>
     <div class="linkbody">
       <link-item

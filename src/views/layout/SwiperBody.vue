@@ -11,6 +11,7 @@
         disableOnInteraction: false
       }"
       :slides-per-view="1"
+      effect="fade"
       :space-between="0"
       navigation
       :pagination="{ clickable: true }"
@@ -27,10 +28,10 @@
       >
         <div :class="'imgbox ' + i">
           <div class="imgbox">
-            <!-- <img
+            <img
               :class="imgClass2"
               :src="'/img/bg' + (index + 1) + '.png'"
-            /> -->
+            />
             <span class="imgspan2">{{ spanText[index] }}</span>
           </div>
         </div>
@@ -100,6 +101,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import wave from './wave.vue'
 import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper'
 import 'swiper/css'
+import { EffectFade } from 'swiper'
+import 'swiper/css/effect-fade'
 import { ref, watch, computed } from 'vue'
 import router from '@/router'
 import { search } from '@/request/api'
@@ -153,7 +156,7 @@ watch(
   },
   { immediate: true }
 )
-const modules = [Pagination, Scrollbar, Navigation, Autoplay]
+const modules = [Pagination, Scrollbar, Navigation, Autoplay, EffectFade]
 const imgClass2 = ref('')
 const imgClass = ref(['imgspan', '', '', '', '', '', '', '', ''])
 const spanText = ref(['H', 'I', 'B', 'I', 'C', 'H', 'A', 'N', 'N'])
@@ -238,7 +241,7 @@ img {
   height: 1296px;
   position: relative;
   object-fit: cover;
-  transition: all 0.5s ease-in;
+  transition: all 0.3s ease-in;
 }
 .imgTouch {
   position: relative;
@@ -247,7 +250,7 @@ img {
   object-fit: cover;
   margin: 0 auto;
   filter: sepia(60%);
-  transition: all 0.5s cubic-bezier(0.04, 0.94, 0.81, 1);
+  transition: all 0.3s cubic-bezier(0.04, 0.94, 0.81, 1);
 }
 .imgbox {
   position: relative;
@@ -273,14 +276,9 @@ img {
   left: 50%;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
   transition: color 0.5s, font-size 0.5s;
-  animation: spanmove ease-in 2s 1;
+  animation: spanmove ease-in 1s 1;
   @keyframes spanmove {
     0% {
-      font-size: 100px;
-      color: transparent;
-      left: 45%;
-    }
-    33% {
       font-size: 100px;
       color: transparent;
       left: 50%;

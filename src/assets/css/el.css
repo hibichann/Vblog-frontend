@@ -97,7 +97,8 @@
   line-height: 60px !important;
   font-weight: bolder !important;
   transition-property: all;
-  color: rgb(35, 252, 198) !important;
+  color: pink !important;
+  text-shadow: 0px 0px 5px rgb(167, 167, 167);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   border-radius: 10px 0 0 10px;
@@ -115,7 +116,7 @@
   top: 23px !important;
   right: 85% !important;
   border-radius: 15px !important;
-  background-color: yellow !important ;
+  background-color: rgb(255, 82, 111) !important ;
 }
 /* dialog */
 .el-dialog {

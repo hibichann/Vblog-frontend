@@ -17,11 +17,11 @@
               @click="toArt(j.id)"
               v-for="j in list[i]"
               :key="j.id"
-              style="text-shadow: 0px 0px 2px green"
+              style="text-shadow: 0px 0px 2px pink"
               class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose text-white hover:text-gray-900 hover:ml-2 hover:bg-pink-50 md:flex-row"
             >
-              <div class="p-2 w-1/6 font-midium text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
-              <div class="p-2 w-5/6 font-midium text-xl transition-all overflow">{{ j.title }}</div>
+              <div class="p-2 w-1/4 font-midium text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+              <div class="p-2 w-3/4 font-midium text-xl transition-all overflow">{{ j.title }}</div>
             </div>
           </div>
         </el-tab-pane>
@@ -33,11 +33,11 @@
             @click="toArt(j.id)"
             v-for="j in list[i]"
             :key="j.id"
-            style="text-shadow: 0px 0px 2px green"
+            style="text-shadow: 0px 0px 2px pink"
             class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose text-white hover:text-gray-900 hover:ml-2 hover:bg-pink-50 md:flex-row"
           >
-            <div class="p-2 w-1/6 font-midium text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
-            <div class="p-2 w-5/6 font-midium text-xl transition-all overflow">{{ j.title }}</div>
+            <div class="p-2 w-1/4 font-midium text-xl transition-all">{{ dayjs(j.createdate).format('M-D') }}</div>
+            <div class="p-2 w-3/4 font-midium text-xl transition-all overflow">{{ j.title }}</div>
           </div></el-tab-pane
         >
       </el-tabs>
@@ -52,7 +52,7 @@
             @click="toArt(j.id)"
             v-for="j in list[i]"
             :key="j.id"
-            style="text-shadow: 0px 0px 2px green"
+            style="text-shadow: 0px 0px 2px pink"
             class="m-4 flex flex-col cursor-pointer rounded-md transition-all leading-loose text-white hover:text-gray-900 hover:ml-2 hover:bg-pink-50 md:flex-row"
           >
             <div class="w-1/3 text-sm font-midium transition-all"><i class="fa fa-calendar"></i>&nbsp;{{ dayjs(j.createdate).format('M-D') }}</div>
