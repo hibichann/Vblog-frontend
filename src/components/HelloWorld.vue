@@ -8,9 +8,10 @@
     </div>
     <div v-if="list.content !== undefined">
       <CardMDVue
-        v-for="i in list.content"
+        v-for="(i, index) in list.content"
         :article="i"
         :key="i"
+        :reverse="index"
       ></CardMDVue>
     </div>
     <div class="text-center">

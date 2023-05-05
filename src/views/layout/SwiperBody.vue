@@ -116,7 +116,7 @@ const toArticleDetail = (id) => {
 }
 const ifShow = ref(true)
 const str = ref('')
-const list = ref<any>([])
+const list = ref<artList>([])
 //防抖函数
 const debounce = (func, wait) => {
   //定时器变量

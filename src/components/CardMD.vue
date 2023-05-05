@@ -2,7 +2,7 @@
   <div class="card-body">
     <!-- 文章卡片 -->
     <div
-      v-if="!store.state.isMobile"
+      v-if="!(props.reverse % 2) && !store.state.isMobile"
       class="left-body"
       @click="toArticleDetail"
     >
@@ -43,12 +43,25 @@
         ></div>
       </div>
     </div>
+    <div
+      v-if="props.reverse % 2 && !store.state.isMobile"
+      class="left-body"
+      @click="toArticleDetail"
+    >
+      <img
+        :src="imgUrl"
+        v-if="imgUrl"
+      />
+      <span
+        v-else
+        class="span2"
+        >Nothing</span
+      >
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-//@ts-ignore
-import backImg from '@/assets/thinking.jpg'
 import { onMounted, ref } from 'vue'
 import { marked } from 'marked'
 import router from '@/router'
@@ -57,7 +70,8 @@ var dayjs = require('dayjs')
 const props = defineProps({
   article: {
     type: Object
-  }
+  },
+  reverse: { type: Number, default: 0 }
 })
 const handleClick = (name, query?) => {
   router.push({
@@ -85,7 +99,19 @@ onMounted(async () => {
 })
 </script>
 <style lang="scss" scoped>
+.card-body:hover {
+  transition: all ease-in 0.2s;
+  img {
+    object-fit: cover;
+    cursor: pointer;
+    filter: brightness(1);
+    transform: scale(1.2);
+    transition: all 0.5s;
+  }
+}
 .card-body {
+  box-shadow: 0 0 4px 2px #2e2e2e;
+  transition: all ease-in 0.2s;
   margin-top: 2vh;
   height: 180px;
   width: 100%;
@@ -95,11 +121,12 @@ onMounted(async () => {
   display: flex;
   justify-content: flex-start;
   .left-body {
-    width: 40%;
+    min-width: 40%;
     display: flex;
     justify-content: space-around;
-    background-color: #0093e9;
-    background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+    background-color: #fbda61;
+    background-image: linear-gradient(45deg, #fbda61 0%, #ff5acd 100%);
+
     overflow: hidden;
     cursor: pointer;
     .span2 {
@@ -112,28 +139,18 @@ onMounted(async () => {
     img {
       width: 100%;
       filter: brightness(0.95);
-      // height: 150px;
       object-fit: cover;
-      transition: all 0.5s;
-    }
-    img:hover {
-      object-fit: cover;
-      cursor: pointer;
-      filter: brightness(1);
-      transform: scale(1.2);
       transition: all 0.5s;
     }
   }
   .right-body {
-    width: 60%;
+    width: 100%;
     z-index: 99;
-    // background-color: rgb(255, 255, 255);
     background-image: url('../assets/bg1.png');
     background-size: cover;
     display: flex;
     justify-content: space-around;
     .article-body {
-      // margin-top: 10px;
       backdrop-filter: blur(5px) brightness(90%);
       padding: 15px;
       width: 100%;

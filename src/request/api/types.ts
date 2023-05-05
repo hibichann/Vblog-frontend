@@ -28,3 +28,15 @@ type linkItem={
     word?:string
 }
 type linkList=linkItem[]
+type artList = art[]
+interface art {
+  id: number
+  title: string
+  content: string
+  date: string
+  createdate: string
+  status: number
+  class: number
+  lang: string
+}
+

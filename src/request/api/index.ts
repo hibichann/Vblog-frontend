@@ -78,7 +78,7 @@ export function getCard4 () {
 }
 //card4
 export function search (params:{str:string}) {
-  return service<any>({
+  return service<artList>({
     url: '/search',
     method: 'get',
     params

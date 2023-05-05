@@ -2,7 +2,7 @@ import axios,{AxiosRequestConfig} from 'axios'
 import { ElMessage } from 'element-plus'
 // 创建一个 axios 实例
 const service = axios.create({
-  baseURL: 'http://192.168.0.105:3000',
+  baseURL: 'http://localhost:3000',
   timeout: 30000, // 请求超时时间毫秒
   withCredentials: false, // 异步请求携带cookie
   headers: {
