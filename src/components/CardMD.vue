@@ -173,7 +173,7 @@ onMounted(async () => {
         text-shadow: 2px 2px 4px #000;
       }
       .title:hover {
-        color: rgb(76, 211, 216);
+        color: rgb(255, 191, 161);
         cursor: pointer;
         text-shadow: -1px -1px 4px #000;
         transition: all 0.2s;
@@ -184,17 +184,19 @@ onMounted(async () => {
         div {
           margin-left: 10px;
           font-size: 14px;
-          color: rgb(90, 255, 247);
+          color: white;
+          text-shadow: 2px 2px 4px #000;
         }
       }
       .about div + div {
-        color: rgb(90, 255, 247);
+        color: white;
         cursor: pointer;
         transition: color 0.3s;
+        text-shadow: 2px 2px 4px #000;
       }
 
       .about div + div:hover {
-        color: rgb(255, 255, 255);
+        color: rgb(255, 160, 160);
         cursor: pointer;
         transition: color 0.3s;
       }

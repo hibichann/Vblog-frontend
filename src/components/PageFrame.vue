@@ -54,7 +54,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .shadow {
   width: 100%;
-  box-shadow: 0 0 20px 20px rgba(0, 70, 107, 0.637);
+  box-shadow: 0 0 15px 10px rgba(0, 70, 107, 0.637);
 }
 .classify {
   background-image: url('../../public/img/bg0.png');
