@@ -6,6 +6,7 @@
       <div>
         <span
           v-for="i in tags"
+          @click="handleClick('classifyDetail', { id: i.tag_id, menuName: i.tag_name, type: 'tag' })"
           style="background-color: #ff3cac; background-image: linear-gradient(225deg, #ff3cac 0%, #784ba0 50%, #2b86c5 100%)"
           class="mx-1 px-2 py-0.5 rounded cursor-pointer text-white"
           >{{ i.tag_name }}</span
@@ -26,9 +27,16 @@
 import { getArticle, getTag } from '@/request/api'
 import { marked } from 'marked'
 import { onMounted, ref } from 'vue'
+import router from '@/router'
 import { useRoute } from 'vue-router'
 import './gitalk/gitalk.css'
 import Gitalk from './gitalk/gitalk.min.js'
+const handleClick = (name, query?) => {
+  router.push({
+    name,
+    query
+  })
+}
 var dayjs = require('dayjs')
 const article = ref({
   id: 0,
@@ -64,9 +72,12 @@ onMounted(async () => {
   background-color: transparent;
   margin: 0 !important;
 }
-:deep(pre) {
-  background-color: transparent;
-}
+// :deep(pre) {
+//   background-color: transparent;
+// }
+// :deep pre {
+//   background-color: transparent;
+// }
 .title {
   padding-top: 50px;
   display: flex;

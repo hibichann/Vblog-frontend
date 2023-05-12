@@ -85,6 +85,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '上传/Upload'
     }
+  },
+  {
+    path: '/mess',
+    name: 'mess',
+    component: () => import('../views/MessView.vue'),
+    meta: {
+      title: i18n.global.t('meg.mess')
+    }
   }
 ]
 

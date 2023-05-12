@@ -126,7 +126,6 @@ onMounted(async () => {
     justify-content: space-around;
     background-color: #fbda61;
     background-image: linear-gradient(45deg, #fbda61 0%, #ff5acd 100%);
-
     overflow: hidden;
     cursor: pointer;
     .span2 {
@@ -144,7 +143,7 @@ onMounted(async () => {
     }
   }
   .right-body {
-    width: 100%;
+    min-width: 60%;
     z-index: 99;
     background-image: url('../assets/bg1.png');
     background-size: cover;

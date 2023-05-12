@@ -7,9 +7,8 @@
       <img :src="props.pfp" />
     </div>
     <div class="right">
-      <span>{{ props.title }}</span>
-      <br />
-      <span>{{ props.word }}</span>
+      <div>{{ props.title }}</div>
+      <div>{{ props.word }}</div>
     </div>
   </div>
 </template>
@@ -28,13 +27,13 @@ const Go = () => {
   text-align: center;
   justify-content: center;
   height: 80px;
-  width: 260px;
+  width: 350px;
   margin: 10px;
   box-shadow: 2px 2px 10px 2px #888;
   display: grid;
-  grid-template-columns: 80px 180px;
+  grid-template-columns: 80px 270px;
   transition: all ease-in 0.2s;
-  color: #fff;
+  // color: #fff;
   img {
     border-radius: 50%;
     height: 60px;
@@ -50,9 +49,9 @@ const Go = () => {
   }
   .right {
     border-radius: 0 10px 10px 0;
-    background-color: #faaca8;
-    background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     :first-child {
       font-weight: bold;
       font-size: 18px;

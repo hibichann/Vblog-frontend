@@ -61,6 +61,7 @@ onMounted(async () => {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  min-height: 100vh;
 }
 .left-body {
   background-color: transparent;

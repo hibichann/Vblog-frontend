@@ -18,6 +18,7 @@ export default {
     keyword: 'Keyword',
     friend: 'Friendship Link',
     corner: 'Corner',
+    mess: 'Mess',
     all: 'All',
     total: 'Total'
   }

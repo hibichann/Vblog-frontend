@@ -88,14 +88,10 @@ const handleDate = (arr) => {
 }
 let dates: any = ref([])
 const total = ref(0)
-let rawDates: any = []
-let rawList: any = []
 onMounted(async () => {
   list.value = (await getArchive()).blogGroups
   total.value = (await getArchive()).total
   dates.value = handleDate(Object.keys(list.value))
-  rawDates = dates.value
-  rawList = list.value
 })
 </script>
 

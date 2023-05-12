@@ -40,6 +40,10 @@
                 <div class="routeline"></div>
               </li>
               <li>
+                <router-link to="/mess"><i class="fa fa-align-left"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.mess') }}</router-link>
+                <div class="routeline"></div>
+              </li>
+              <li>
                 <div
                   @click="switchLanguage"
                   class="language"
