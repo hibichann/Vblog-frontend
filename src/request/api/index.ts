@@ -9,6 +9,14 @@ export function postArticle (data) {
     data
   })
 }
+//新增tag
+export function addTag (data:{tagname:String}) {
+  return service({
+    url: '/addTag',
+    method: 'post',
+    data
+  })
+}
 //归档
 export function getArchive () {
   return service({
@@ -21,7 +29,13 @@ export function getBlogByPage (params: blogByPage) {
   return service({
     url: '/getBlogByPage',
     method: 'get',
-    params
+  })
+}
+//首页10篇
+export function getIndex () {
+  return service({
+    url: '/getIndex',
+    method: 'get',
   })
 }
 //分页文章列表tag

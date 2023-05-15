@@ -33,6 +33,23 @@
           >{{ i.tag_name }}</el-check-tag
         >
       </div>
+      <div class="flex-1 border-gray-400 border-2 border-solid rounded-lg p-6">
+        <span class="my-2">新增Tag/New Tag</span>
+        <br />
+        <br />
+        <el-input
+          v-model="tagname"
+          placeholder=""
+        ></el-input>
+        <br />
+        <br />
+        <el-button
+          round
+          type="primary"
+          @click="handleAddTag"
+          >提交/commit</el-button
+        >
+      </div>
     </div>
     <div class="">
       <div class="my-2">标题/title</div>
@@ -58,7 +75,7 @@
 </template>
 
 <script lang="ts" name="" setup>
-import { getCateTree, getAllTags, postArticle } from '@/request/api'
+import { getCateTree, getAllTags, postArticle, addTag } from '@/request/api'
 import '@/request/api/types'
 import { ElMessage } from 'element-plus'
 import { onMounted, ref } from 'vue'
@@ -93,6 +110,11 @@ const commit = async () => {
     cate.value = []
     tagarr.value = []
   }
+}
+const tagname = ref('')
+const handleAddTag = async () => {
+  await addTag({ tagname: tagname.value })
+  tagname.value = ''
 }
 onMounted(async () => {
   cates.value = await getCateTree()

@@ -53,7 +53,7 @@
 import { onMounted, ref } from 'vue'
 import CardMDVue from './CardMD.vue'
 import '@/request/api/types'
-import { getBlogByPage, getBlogByTag } from '@/request/api'
+import { getBlogByPage, getBlogByTag, getIndex } from '@/request/api'
 import router from '@/router'
 const props = defineProps({
   type: {
@@ -81,7 +81,7 @@ const handleList = async (page) => {
   } else if (props.type === 'tag') {
     list.value = await getBlogByTag({ page, tagid: props.id })
   } else {
-    list.value = await getBlogByPage({ page: 1 })
+    list.value = await getIndex()
   }
 }
 const handleClick = (name, query?) => {
