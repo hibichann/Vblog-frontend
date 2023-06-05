@@ -8,7 +8,7 @@ preview:
 ![Z$)Q8$PT5W_X0~9HVXAW9@P](https://github.com/hibichann/Vblog-frontend/assets/17671678/47c33af5-c6bc-4189-b510-ba4b8f4eff5e)
 ![RH))5SYAZ8L2ZSDHPYV2}JU](https://github.com/hibichann/Vblog-frontend/assets/17671678/d422f6cf-d5bd-4506-9e2a-2c2bba9a8306)
 
-#### i18n支持中英文切换，可扩展:
+#### 使用i18n进行国际化支持，可扩展:
 support i18n:
 ![0%BJ5XU3Z~%@B 9))H@7 L8](https://github.com/hibichann/Vblog-frontend/assets/17671678/96fdcab4-c0e9-4c23-aa1a-cca3d9ff64b8)
 
@@ -21,12 +21,15 @@ yarn
 ```
 yarn dev
 ```
-采用Vue3+TypeScript+Element Plus+Tailwind CSS开发
+采用Vue3+TypeScript+Element Plus+Tailwind CSS开发<br/>
 前后端分离，实现了主页，归档，分类，标签，友链，评论等，用户可自行上传博客，修改分类/标签。
+>Use Vue3+TypeScript+Element Plus+Tailwind CSS to develop<br/>
+>The front and back ends are separated, and the home page, archive, categories, label, friend link, comment, etc. are realized. Users can upload blogs and modify categories/labels by themselves.
 
->没有买服务器,所以目前的个人博客是用的hexo做的,运行在cloudflare page和github page上
+没有买服务器,所以目前的个人博客是用的hexo做的,运行在cloudflare page和github page上
 >havnt bought server, so now is using hexo and `cloudflare page` and `github page`
->查看网址：
+
+查看网址：
 >see the site:
 
 ###### [地址1 Cloudflare Page(推荐/suggest)](https://hibi.pages.dev)
