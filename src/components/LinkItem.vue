@@ -39,6 +39,7 @@ const Go = () => {
     height: 60px;
     width: 60px;
     margin: 10px;
+    object-fit: cover;
     box-shadow: 0px 0px 10px 2px #888;
   }
   .left {

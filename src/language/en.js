@@ -16,7 +16,7 @@ export default {
     archive: 'Archive',
     board: 'Message Board',
     keyword: 'Keyword',
-    friend: 'Friendship Link',
+    friend: 'Friend Link',
     corner: 'Corner',
     mess: 'Mess',
     all: 'All',
