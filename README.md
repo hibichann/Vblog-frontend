@@ -1,4 +1,10 @@
 # 个人博客项目
+
+采用Vue3+TypeScript+Element Plus+Tailwind CSS开发<br/>
+前后端分离，实现了主页，归档，分类，标签，友链，评论等，用户可自行上传博客，修改分类/标签。
+>Use Vue3+TypeScript+Element Plus+Tailwind CSS to develop<br/>
+>The front and back ends are separated, and the home page, archive, categories, label, friend link, comment, etc. are realized. Users can upload blogs and modify categories/labels by themselves.
+
 #### 预览：
 preview:
 ![image](https://github.com/hibichann/Vblog-frontend/assets/17671678/a56f79da-2a05-43fa-b79d-172309e7a5c0)
@@ -21,10 +27,6 @@ yarn
 ```
 yarn dev
 ```
-采用Vue3+TypeScript+Element Plus+Tailwind CSS开发<br/>
-前后端分离，实现了主页，归档，分类，标签，友链，评论等，用户可自行上传博客，修改分类/标签。
->Use Vue3+TypeScript+Element Plus+Tailwind CSS to develop<br/>
->The front and back ends are separated, and the home page, archive, categories, label, friend link, comment, etc. are realized. Users can upload blogs and modify categories/labels by themselves.
 
 没有买服务器,所以目前的个人博客是用的hexo做的,运行在cloudflare page和github page上
 >havnt bought server, so now is using hexo and `cloudflare page` and `github page`
