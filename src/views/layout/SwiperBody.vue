@@ -11,6 +11,7 @@
         disableOnInteraction: false
       }"
       :slides-per-view="1"
+      :rewind="true"
       effect="fade"
       :space-between="0"
       navigation
@@ -32,7 +33,7 @@
               :class="imgClass2"
               :src="'/img/bg' + (index + 1) + '.png'"
             />
-            <span class="imgspan2">{{ spanText[index] }}</span>
+            <!-- <span class="imgspan2">{{ spanText[index] }}</span> -->
           </div>
         </div>
       </swiper-slide>
@@ -55,7 +56,7 @@
       @click="scroll1"
       class="scrollDown"
     >
-      <i class="fa fa-angle-double-down"></i>
+      <i class="fa fa-angle-down"></i>
     </div>
     <el-dialog
       width="80%"
@@ -77,6 +78,12 @@
         @focus="changeFoucs"
         @blur="changeFoucs"
       />
+      <div
+        v-if="list.length"
+        class="total"
+      >
+        {{ list.length + '结果' }}
+      </div>
       <div v-for="i in list">
         <div class="art-body">
           <div
@@ -188,7 +195,7 @@ const scroll1 = () => {
 .beforeSearch {
   position: absolute;
   left: 5vw;
-  top: 70vh;
+  top: 25vh;
   z-index: 9;
   text-shadow: 4px 4px 8px #000000;
 }
@@ -201,7 +208,7 @@ const scroll1 = () => {
   z-index: 9;
   transform: translate(-50%);
   left: 50%;
-  top: 60vh;
+  top: 15vh;
   transition: all ease-out 0.2s;
   input {
     background: rgba(0, 0, 0, 0.5);
@@ -213,18 +220,21 @@ const scroll1 = () => {
   box-shadow: 0 0 10px 5px #ffffff;
 }
 .scrollDown {
-  font-size: 150px;
+  cursor: pointer;
+  font-size: 48px;
+  background-color: #0000006c;
+  padding: 0 10px;
+  border-radius: 5px;
   display: block;
-  font-weight: bolder;
   transition: all ease-out 0.5s;
   position: absolute;
   z-index: 9;
   transform: translate(-50%);
-  left: 50%;
+  left: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 75vh;
+  top: 40vh;
   -webkit-text-stroke: 4px rgb(255, 255, 255);
   animation: trans 2s ease-out infinite alternate;
   @keyframes trans {
@@ -237,16 +247,16 @@ const scroll1 = () => {
   }
 }
 img {
-  width: 2304px;
-  height: 1296px;
+  width: 1920px;
+  height: 1080px;
   position: relative;
   object-fit: cover;
   transition: all 0.3s ease-in;
 }
 .imgTouch {
-  position: relative;
   width: 1920px;
-  height: 1080px;
+  height: 540px;
+  position: relative;
   object-fit: cover;
   margin: 0 auto;
   filter: sepia(60%);
@@ -258,55 +268,54 @@ img {
   text-align: center;
   vertical-align: middle;
 }
-.imgspan .imgspan2::before {
-  content: '·';
-  font-size: 40px;
-  line-height: 200px;
-  -webkit-text-stroke: 0px rgba(255, 255, 255, 0);
-  color: rgb(255, 0, 0);
-}
-.imgspan .imgspan2 {
-  font-size: 200px;
-  font-weight: bolder;
-  position: absolute;
-  text-shadow: 4px 4px 10px #000000;
-  color: rgb(255, 255, 255);
-  transform: translate(-50%);
-  top: 20vh;
-  left: 50%;
-  -webkit-text-stroke: 4px rgb(255, 255, 255);
-  transition: color 0.5s, font-size 0.5s;
-  animation: spanmove ease-in 1s 1;
-  @keyframes spanmove {
-    0% {
-      font-size: 100px;
-      color: transparent;
-      left: 50%;
-    }
-    50% {
-      font-size: 100px;
-      color: transparent;
-      left: 50%;
-    }
-    100% {
-      font-size: 200px;
-      color: rgb(255, 255, 255);
-      left: 50%;
-    }
-  }
-}
+// .imgspan .imgspan2::before {
+//   content: '·';
+//   font-size: 40px;
+//   line-height: 200px;
+//   -webkit-text-stroke: 0px rgba(255, 255, 255, 0);
+//   color: rgb(255, 0, 0);
+// }
+// .imgspan .imgspan2 {
+//   font-size: 200px;
+//   font-weight: bolder;
+//   position: absolute;
+//   text-shadow: 4px 4px 10px #000000;
+//   color: rgb(255, 255, 255);
+//   transform: translate(-50%);
+//   top: 20vh;
+//   left: 50%;
+//   -webkit-text-stroke: 4px rgb(255, 255, 255);
+//   transition: color 0.5s, font-size 0.5s;
+//   animation: spanmove ease-in 1s 1;
+//   @keyframes spanmove {
+//     0% {
+//       font-size: 100px;
+//       color: transparent;
+//       left: 50%;
+//     }
+//     50% {
+//       font-size: 100px;
+//       color: transparent;
+//       left: 50%;
+//     }
+//     100% {
+//       font-size: 200px;
+//       color: rgb(255, 255, 255);
+//       left: 50%;
+//     }
+//   }
+// }
 
-.imgspan .imgspan2:hover {
-  color: rgb(255, 255, 255);
-  font-size: 250px;
-  transition: color 0.5s, font-size 0.5s;
-}
+// .imgspan .imgspan2:hover {
+//   color: rgb(255, 255, 255);
+//   font-size: 250px;
+//   transition: color 0.5s, font-size 0.5s;
+// }
 .mySwiper {
   display: block;
   width: 100%;
-  height: calc(100vh);
+  height: calc(60vh);
   background-image: url('../../../public/img/bg1.png');
-  // height: 60vh;
 }
 .default {
   display: block;
@@ -314,28 +323,37 @@ img {
 }
 
 .art-body:hover {
-  background-color: #fdf2f8;
-  box-shadow: 0 0 10px 10px #fdf2f8;
+  // background-color: #fdf2f8;
+  // box-shadow: 0 0 10px 10px #fdf2f8;
   transition: all 0.2s;
   .title {
     color: rgb(70, 188, 194);
+    // margin: 0 20px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: margin 0.2s;
+    border-bottom: 2px solid #007bff;
   }
+}
+.total {
+  border-bottom: 2px dashed black;
+  font-size: 16px;
+  padding: 5px;
 }
 .art-body {
   background-color: rgb(255, 255, 255);
   width: 100%;
   height: 150px;
   margin: 10px 0;
-  border-radius: 20px;
+  // border-radius: 20px;
   transition: all 0.2s;
+  border-bottom: 2px solid black;
   .title {
+    box-sizing: border-box;
     position: relative;
-    padding: 0 10px;
-    display: block;
+    // padding: 0 10px;
+    display: inline-block;
     text-align: left;
-    height: 40px;
+    height: 30px;
     top: 10px;
     color: black;
     font-size: 20px;
@@ -353,7 +371,7 @@ img {
     position: relative;
     width: 100%;
     top: 10px;
-    padding: 0 10px;
+    padding: 0 30px;
     font-size: 16px;
     line-height: 20px;
     font-weight: 500;

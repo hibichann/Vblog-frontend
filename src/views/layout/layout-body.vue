@@ -36,7 +36,7 @@
                 <div class="routeline"></div>
               </li>
               <li>
-                <router-link to="/corner"><i class="fa fa-diamond"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.corner') }}</router-link>
+                <router-link to="/friend"><i class="fa fa-diamond"></i>&nbsp;{{ store.state.isMobile ? '' : $t('meg.friend') }}</router-link>
                 <div class="routeline"></div>
               </li>
               <li>

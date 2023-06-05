@@ -38,6 +38,7 @@ const Go = () => {
     border-radius: 50%;
     height: 60px;
     width: 60px;
+    object-fit: cover;
     margin: 10px;
     box-shadow: 0px 0px 10px 2px #888;
   }

@@ -55,9 +55,9 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/corner',
-    name: 'corner',
-    component: () => import('../views/Corner.vue'),
+    path: '/friend',
+    name: 'friend',
+    component: () => import('../views/Friend.vue'),
     meta: {
       title: i18n.global.t('meg.tags')
     }

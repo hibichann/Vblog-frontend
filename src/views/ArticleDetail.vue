@@ -18,7 +18,7 @@
       v-highlight
       v-html="marked(article.content.toString())"
     ></div>
-    <div id="gitalk-container"></div>
+    <!-- <div id="gitalk-container"></div> -->
     <div class="h-10"></div>
   </page-frame>
 </template>
@@ -29,8 +29,8 @@ import { marked } from 'marked'
 import { onMounted, ref } from 'vue'
 import router from '@/router'
 import { useRoute } from 'vue-router'
-import './gitalk/gitalk.css'
-import Gitalk from './gitalk/gitalk.min.js'
+// import './gitalk/gitalk.css'
+// import Gitalk from './gitalk/gitalk.min.js'
 const handleClick = (name, query?) => {
   router.push({
     name,
@@ -47,21 +47,21 @@ const article = ref({
   status: 1,
   cnname: ''
 })
-const gitalk = new Gitalk({
-  clientID: 'f23a3794037ee7e92a46',
-  clientSecret: '85fabb1fefc584abd420b2d16d27f2bb14f8956d',
-  repo: 'blogcomment',
-  title: 'Article Id:' + article.value.id,
-  owner: 'hibichann',
-  admin: ['hibichann'],
-  language: window.localStorage.getItem('lang') === 'cn' ? 'zh-CN' : 'en'
-})
+// const gitalk = new Gitalk({
+//   clientID: 'f23a3794037ee7e92a46',
+//   clientSecret: '85fabb1fefc584abd420b2d16d27f2bb14f8956d',
+//   repo: 'blogcomment',
+//   title: 'Article Id:' + article.value.id,
+//   owner: 'hibichann',
+//   admin: ['hibichann'],
+//   language: window.localStorage.getItem('lang') === 'cn' ? 'zh-CN' : 'en'
+// })
 const route = useRoute()
 const tags = ref<allTags>([])
 const typeArr = ref(['', 'success', 'info', 'warning', 'danger'])
 onMounted(async () => {
   article.value = (await getArticle({ id: route.params.id! as unknown as number })) as any
-  gitalk.render('gitalk-container')
+  // gitalk.render('gitalk-container')
   tags.value = await getTag({ id: route.params.id! as unknown as number })
 })
 </script>
