@@ -1,11 +1,3 @@
-# v-blog
+# 个人博客
 
-## Project setup
-
-```
-yarn
-```
-
-```
-yarn dev
-```
+探究更简洁的首页（已搁置）
