@@ -31,8 +31,5 @@ yarn dev
 没有买服务器,所以目前的个人博客是用的hexo做的,运行在cloudflare page和github page上
 >havnt bought server, so now is using hexo and `cloudflare page` and `github page`
 
-查看网址：
->see the site:
-
 ###### [地址1 Cloudflare Page(推荐/suggest)](https://hibi.pages.dev)
 ###### [地址2 Github Page](https://hibichann.github.io)
