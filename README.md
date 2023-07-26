@@ -14,7 +14,7 @@ preview:
 ![Z$)Q8$PT5W_X0~9HVXAW9@P](https://github.com/hibichann/Vblog-frontend/assets/17671678/47c33af5-c6bc-4189-b510-ba4b8f4eff5e)
 ![RH))5SYAZ8L2ZSDHPYV2}JU](https://github.com/hibichann/Vblog-frontend/assets/17671678/d422f6cf-d5bd-4506-9e2a-2c2bba9a8306)
 
-#### 使用i18n进行国际化支持，可扩展:
+#### 使用i18n进行国际化支持:
 support i18n:
 ![0%BJ5XU3Z~%@B 9))H@7 L8](https://github.com/hibichann/Vblog-frontend/assets/17671678/96fdcab4-c0e9-4c23-aa1a-cca3d9ff64b8)
 
