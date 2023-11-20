@@ -4,7 +4,15 @@
 前后端分离，实现了主页，归档，分类，标签，友链，评论等，用户可自行上传博客，修改分类/标签。
 >Use Vue3+TypeScript+Element Plus+Tailwind CSS to develop<br/>
 >Utilizing frontend-backend separation, the website includes functionalities such as homepage, archives, categorization, tags, friend links, and comments. Users are able to independently upload blog posts and modify categories/tags.
+## Project setup
 
+```
+yarn
+```
+
+```
+yarn dev
+```
 #### 预览：
 preview:
 ![image](https://github.com/hibichann/Vblog-frontend/assets/17671678/a56f79da-2a05-43fa-b79d-172309e7a5c0)
@@ -18,13 +26,5 @@ preview:
 support i18n:
 ![0%BJ5XU3Z~%@B 9))H@7 L8](https://github.com/hibichann/Vblog-frontend/assets/17671678/96fdcab4-c0e9-4c23-aa1a-cca3d9ff64b8)
 
-## Project setup
 
-```
-yarn
-```
-
-```
-yarn dev
-```
 
